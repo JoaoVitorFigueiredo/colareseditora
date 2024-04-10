@@ -25,7 +25,6 @@ export function BookPage(){
             <div>
                 <img src={book.thumbnailUrl}></img>
                 <p>{book.title}</p>
-                <ul>{book.authors.map(author => <li>{author}</li>)}</ul>
                 <p>{book.shortDescription}</p>
             </div>
             <div>

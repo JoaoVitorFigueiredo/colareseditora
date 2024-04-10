@@ -1,10 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
-export const Navbar = () => {
+export function Navbar(){
+    const [searchString, setSearchString] = useState('')
+    function updateSearch(e){
+        setSearchString(e.target.value)
+    }
+
     return <div className="navbar">
         <div className="links">
-            <picture/>
+            <input value={searchString} onChange={updateSearch}></input>
+            <link to={`/search/${searchString}`}></link>
             <Link to="/"> Main Page (icon) </Link>
             <Link to="/shop"> Loja </Link>
             <Link to="/sales"> Promoções </Link>
