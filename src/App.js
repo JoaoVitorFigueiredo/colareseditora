@@ -8,7 +8,7 @@ import {Cart} from "./Pages/cart/cart"
 import {BestSellers} from "./Pages/best-sellers/best-sellers";
 import {Sales} from "./Pages/sales/books"
 import {BookPage} from "./Pages/book-page/book-page";
-import {Search} from "./Pages/Search/Search";
+import {Search} from "./Pages/search/Search";
 
 function App() {
   return (
