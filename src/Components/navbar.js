@@ -10,7 +10,7 @@ export function Navbar(){
     return <div className="navbar">
         <div className="links">
             <input value={searchString} onChange={updateSearch}></input>
-            <link to={`/search/${searchString}`}></link>
+            <Link to={`/search/${searchString}`}>ef</Link>
             <Link to="/"> Main Page (icon) </Link>
             <Link to="/shop"> Loja </Link>
             <Link to="/sales"> Promoções </Link>

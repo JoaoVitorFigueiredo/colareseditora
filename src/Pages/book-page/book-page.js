@@ -23,7 +23,7 @@ export function BookPage(){
     return(
         <div className="page">
             <div>
-                <img src={book.thumbnailUrl}></img>
+                <img alt={'?'} src={book.thumbnailUrl}></img>
                 <p>{book.title}</p>
                 <p>{book.shortDescription}</p>
             </div>
