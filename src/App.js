@@ -1,8 +1,8 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
-import Navbar from "./Components/navbar.js"
-import Footer from "./Components/footer.js"
+import Navbar from "./Components/navbar/navbar.js"
+import Footer from "./Components/footer/footer.js"
 
 import {Shop} from "./Pages/shop/shop"
 import {Cart} from "./Pages/cart/cart"
