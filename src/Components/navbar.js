@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 
 function NavBar() {
@@ -16,9 +16,9 @@ function NavBar() {
 
         <nav className="navbar">
             <div className="nav-container">
-            <NavLink exact to="/" className="nav-logo">
+            <Link exact to="/" className="nav-logo">
                 <span>J&J Books</span>
-            </NavLink>
+            </Link>
 
             <div className="nav-toggle" onClick={toggleMenu}>
                 <div className={isMenuOpen ? "nav-icon open" : "nav-icon"}></div>
@@ -29,29 +29,29 @@ function NavBar() {
                 <input value={searchString} onChange={updateSearch}></input>
                 </li>
                 <li className="nav-item" onClick={toggleMenu}>
-                <NavLink to={`/search/${searchString}`} activeClassName="active" className="nav-links">
+                <Link to={`/search/${searchString}`} activeClassName="active" className="nav-links">
                     Pesquisar
-                </NavLink>
+                </Link>
                 </li>
                 <li className="nav-item" onClick={toggleMenu}>
-                <NavLink exact to="/" activeClassName="active" className="nav-links">
+                <Link exact to="/" activeClassName="active" className="nav-links">
                     Home
-                </NavLink>
+                </Link>
                 </li>
                 <li className="nav-item" onClick={toggleMenu}>
-                <NavLink exact to="/shop" activeClassName="active" className="nav-links">
+                <Link exact to="/shop" activeClassName="active" className="nav-links">
                     Loja
-                </NavLink>
+                </Link>
                 </li>
                 <li className="nav-item" onClick={toggleMenu}>
-                <NavLink exact to="/sales" activeClassName="active" className="nav-links">
+                <Link exact to="/sales" activeClassName="active" className="nav-links">
                     Promoções
-                </NavLink>
+                </Link>
                 </li>
                 <li className="nav-item" onClick={toggleMenu}>
-                <NavLink exact to="/cart" activeClassName="active" className="nav-links">
+                <Link exact to="/cart" activeClassName="active" className="nav-links">
                     Carrinho
-                </NavLink>
+                </Link>
                 </li>
             </ul>
             </div>
