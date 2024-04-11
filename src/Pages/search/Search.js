@@ -17,7 +17,7 @@ export function Search(){
             setBook(bookData[0])
         }
         catch (error){
-            console.error(`Error fetching data: ${error}`) // Era engraçado fazer isso daqui enviar pra uma página de erro.
+            console.error(`Eror fetching data: ${error}`) // Era engraçado fazer isso daqui enviar pra uma página de erro.
         }
     }
     return (
