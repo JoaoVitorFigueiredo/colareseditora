@@ -1,5 +1,6 @@
 import {React, useEffect, useState} from "react";
 import {BookThumbnail} from "../../Components/book-thumbnail";
+import {Filter} from "../../Components/book-thumbnail"
 
 export function Shop(){
     const [books, setBooks] = useState([])
@@ -19,6 +20,7 @@ export function Shop(){
     }
     return (
         <div>
+            <Filter/>
             {books.map(book => BookThumbnail(book.id,book.title,book.publishedDate,book.price ,book.status,book.authors,book.score,book.thumbnailUrl))}
         </div>
     )
