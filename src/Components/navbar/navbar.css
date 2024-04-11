@@ -23,7 +23,7 @@
   .nav-logo {
     color: #ffffff;
     align-items: center;
-    margin-left: 20px;
+    margin-left: 10px;
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
@@ -40,6 +40,11 @@
     height: 3rem;
     margin-left: 16px;
   }
+
+  .logo-image {
+  width: 80px;
+  height: auto;
+}
   
   .nav-menu {
     display: flex;
