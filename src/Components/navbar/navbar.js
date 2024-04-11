@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 
+
+
 function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => setIsMenuOpen(prevState => !prevState);
@@ -17,6 +19,7 @@ function NavBar() {
         <nav className="navbar">
             <div className="nav-container">
             <Link exact to="/" className="nav-logo">
+                <img src="https://www.transparentpng.com/thumb/books/blue-book-png-icon--an1pZY.png" alt="J&J Books Logo" className="logo-image"/>
                 <span>J&J Books</span>
             </Link>
 
@@ -50,7 +53,7 @@ function NavBar() {
                 </li>
                 <li className="nav-item" onClick={toggleMenu}>
                 <Link exact to="/cart" activeClassName="active" className="nav-links">
-                    Carrinho
+                <i className="fas fa-shopping-cart"></i>
                 </Link>
                 </li>
             </ul>
