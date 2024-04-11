@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {BookThumbnail} from "../../Components/book-thumbnail";
 
+
 // Verificar Promises pra isso
 export function BestSellers(){
     const [books, setBooks] = useState([])
@@ -20,7 +21,7 @@ export function BestSellers(){
     }
     return (
         <div>
-            {books.map(book => BookThumbnail(book.id,book.title,book.publishedDate,book.price,book.status,book.authors,book.score,book.thumbnailUrl))}
+            {books.map(book => <BookThumbnail book={book}/>)}
         </div>
     )
 }

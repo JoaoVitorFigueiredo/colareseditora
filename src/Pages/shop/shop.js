@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from "react";
 import {BookThumbnail} from "../../Components/book-thumbnail";
-import {Filter} from "../../Components/book-thumbnail"
+import {Filter} from "../../Components/filter/filter"
 
 export function Shop(){
     const [books, setBooks] = useState([])
