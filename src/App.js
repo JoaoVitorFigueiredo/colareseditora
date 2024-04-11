@@ -2,13 +2,14 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 import Navbar from "./Components/navbar.js"
+import Footer from "./Components/footer.js"
 
 import {Shop} from "./Pages/shop/shop"
 import {Cart} from "./Pages/cart/cart"
 import {BestSellers} from "./Pages/best-sellers/best-sellers";
 import {Sales} from "./Pages/sales/books"
 import {BookPage} from "./Pages/book-page/book-page";
-import {Search} from "./Pages/search/Search";
+import {Search} from "./Pages/Search/Search";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/book/:id" element={<BookPage/>}></Route>
         <Route path="/search/:searchString" element={<Search/>}></Route>
       </Routes>
+      <Footer/>
     </Router>
     </div>
   );
