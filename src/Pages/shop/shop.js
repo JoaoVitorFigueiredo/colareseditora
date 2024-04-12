@@ -21,7 +21,7 @@ export function Shop(){
     return (
         <div>
             <Filter/>
-            {books.map(book => BookThumbnail(book.id,book.title,book.publishedDate,book.price ,book.status,book.authors,book.score,book.thumbnailUrl))}
+            {books.map(book => <BookThumbnail book={book}/>)}
         </div>
     )
 }
