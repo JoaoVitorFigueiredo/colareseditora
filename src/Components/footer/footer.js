@@ -19,6 +19,7 @@ function Footer() {
                     </ul>
                 </div>
             </div>
+            <hr className="footer-divider" />
             <div className="copyright">
                 <p>&copy; 2023-{new Date().getFullYear()}, Livraria J&J Books com uma parceria com Colares Sintra.</p>
             </div>

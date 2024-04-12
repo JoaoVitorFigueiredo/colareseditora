@@ -16,8 +16,7 @@ function NavBar() {
         <nav className="navbar">
             <div className="nav-container">
                 <Link exact to="/" className="nav-logo">
-                    <img src="https://www.transparentpng.com/thumb/books/blue-book-png-icon--an1pZY.png" alt="J&J Books Logo" className="logo-image"/>
-                    <span>J&J Books</span>
+                    <img src="https://raw.githubusercontent.com/JoaoVitorFigueiredo/colareseditora/main/public/logo-jj.png?token=GHSAT0AAAAAACPUAV3VWG6HNXFPTX3237E6ZQZCIMQ" alt="J&J Books Logo" className="logo-image"/>
                 </Link>
 
                 <div className="nav-search-container">
