@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from "react";
-import Select from "react-select"
-
 export function Filter({selectBooks}){
-
-    const [selectedOption, setOrderOption] = useState('');
+    const [selectedOption, setOrderOption] = useState("-author");
     const [filterAuthor, setFilterAuthor] = useState("")
     const [filterCategory, setFilterCategory] = useState("")
 
@@ -32,8 +29,7 @@ export function Filter({selectBooks}){
                 <option value="price">Preço ↑</option>
                 <option value="-price">Classificação ↓</option>
             </select>
-            <Select options={[3,4]} value={filterAuthor} onChange={updateAuthor}/>
-            <Select options={[1,2]} value={filterCategory} onChange={updateCategory}/>
+
         </div>
     )
 }
