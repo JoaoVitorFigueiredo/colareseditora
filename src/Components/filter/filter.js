@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 export function Filter({selectBooks}){
-    const [selectedOption, setOrderOption] = useState("-");
-    const [filterOption, setFilterOption] = useState("")
+    const [selectedOption, setOrderOption] = useState("-score");
+    const [filterOption, setFilterOption] = useState("author")
     const [filterString, setFilterString] = useState("")
 
 

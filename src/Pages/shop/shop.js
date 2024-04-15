@@ -10,12 +10,11 @@ export function Shop(){
             const response = await fetch(`http://localhost:3030/books?_sort=${selectedOption}`,{method:"GET"})
             let booksData = await response.json();
             if (filterOption === "author"){
-                booksData = booksData.filter(book => book.authors.map(author => author.includes(filterString)))
+                booksData = booksData.filter(book => book.authors.some(author => author.toLowerCase().includes(filterString.toLowerCase())))
                 console.log(booksData)
-                console.log(',')
             }
             else{
-                booksData = booksData.filter(book => book.categories.map(category => category.includes(filterString)))
+                booksData = booksData.filter(book => book.categories.some(category => category.toLowerCase().includes(filterString.toLowerCase())))
             }
             setBooks(booksData)
         }
