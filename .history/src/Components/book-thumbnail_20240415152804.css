@@ -1,0 +1,70 @@
+.book-thumbnail {
+    display: flex;
+    align-items: center;
+    background-color: #f0f5ff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail-image {
+    max-width: 120px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.book-details {
+    flex: 1;
+}
+
+.book-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.author-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.author-list li {
+    font-size: 14px;
+    color: #555;
+}
+
+.book-price {
+    font-size: 16px;
+    color: #007bff; /* Blue color for price */
+    margin-bottom: 5px;
+}
+
+.book-status {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.book-score {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.buy-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+}
