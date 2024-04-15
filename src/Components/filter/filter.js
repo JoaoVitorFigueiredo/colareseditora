@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 export function Filter({selectBooks}){
     const [selectedOption, setOrderOption] = useState("-score");
-    const [filterOption, setFilterOption] = useState("author")
+    const [filterOption, setFilterOption] = useState("authors")
     const [filterString, setFilterString] = useState("")
 
 
@@ -30,8 +30,8 @@ export function Filter({selectBooks}){
             </select>
             <input value={filterString} onChange={updateFilter}/>
             <select id="dropdown" value={filterOption} onChange={updateFilterOption}>
-                <option value="author">Autor</option>
-                <option value="category">Categoria</option>
+                <option value="authors">Autor</option>
+                <option value="categories">Categoria</option>
             </select>
         </div>
     )
