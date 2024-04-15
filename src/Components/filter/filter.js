@@ -1,25 +1,24 @@
 import React, {useState, useEffect} from "react";
 export function Filter({selectBooks}){
-    const [selectedOption, setOrderOption] = useState("-author");
-    const [filterAuthor, setFilterAuthor] = useState("")
-    const [filterCategory, setFilterCategory] = useState("")
+    const [selectedOption, setOrderOption] = useState("-");
+    const [filterOption, setFilterOption] = useState("")
+    const [filterString, setFilterString] = useState("")
 
 
     useEffect(() => {
-        selectBooks(selectedOption,filterAuthor,filterCategory)
-    },[selectedOption,filterAuthor,filterCategory]);
+        selectBooks(selectedOption,filterString,filterOption)
+    },[selectedOption,filterOption,filterString]);
 
-    const updateCategory = (e) => {
-            setFilterCategory(e.target.value);
+    const updateFilter = (e) => {
+            setFilterString(e.target.value);
         };
 
-    const updateAuthor = (e) => {
-            setFilterAuthor(e.target.value)
+    const updateFilterOption = (e) => {
+            setFilterOption(e.target.value)
         }
     const updateSort = (e) => {
         setOrderOption(e.target.value);
     }
-
 
     return (
         <div>
@@ -27,9 +26,13 @@ export function Filter({selectBooks}){
                 <option value="-score">Classificação ↓</option>
                 <option value="score">Classificação ↑</option>
                 <option value="price">Preço ↑</option>
-                <option value="-price">Classificação ↓</option>
+                <option value="-price">Preço ↓</option>
             </select>
-
+            <input value={filterString} onChange={updateFilter}/>
+            <select id="dropdown" value={filterOption} onChange={updateFilterOption}>
+                <option value="author">Autor</option>
+                <option value="category">Categoria</option>
+            </select>
         </div>
     )
 }
