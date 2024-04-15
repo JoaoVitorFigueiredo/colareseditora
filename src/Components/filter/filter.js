@@ -1,42 +1,46 @@
-import {React, useState} from "react";
-import { useHistory } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import Select from "react-select"
 
-export function Filter(){
+export function Filter({selectBooks}){
+
     const [selectedOption, setOrderOption] = useState('');
-    const [filterString, setFilterString] = useState("")
-    const [filterOption, setFilterOption] = useState("")
-    const handleFilterChange = (e) => {
-            setFilterOption(e.target.value);
+    const [filterAuthor, setFilterAuthor] = useState("")
+    const [filterCategory, setFilterCategory] = useState("")
+
+
+    useEffect(() => {
+        selectBooks(selectedOption,filterAuthor,filterCategory)
+    },[selectedOption,filterAuthor,filterCategory]);
+
+    const updateCategory = (e) => {
+            setFilterCategory(e.target.value);
         };
 
-
-    const updateFilter = (e) => {
-            e.stopPropagation();
-            setFilterString(e.target.value)
+    const updateAuthor = (e) => {
+            setFilterAuthor(e.target.value)
         }
-    const handleSelectChange = (e) => {
+    const updateSort = (e) => {
         setOrderOption(e.target.value);
     }
 
 
-
     return (
         <div>
-            <select id="dropdown" value={selectedOption} onChange={handleSelectChange}>
-                <option value="ClasDesc">Classificação ↓</option>
-                <option value="ClassAsc">Classificação ↑</option>
-                <option value="PriceAsc">Preço ↑</option>
-                <option value="PriceDesc">Classificação ↓</option>
+            <select id="dropdown" value={selectedOption} onChange={updateSort}>
+                <option value="-score">Classificação ↓</option>
+                <option value="score">Classificação ↑</option>
+                <option value="price">Preço ↑</option>
+                <option value="-price">Classificação ↓</option>
             </select>
-            <input value={filterString} onChange={updateFilter}/>
-            <select id="dropdown" value={filterOption} onChange={handleFilterChange}>
-                <option value="Autor">Autor</option>
-                <option value="Categoria">Categoria</option>
-
-            </select>
+            <Select options={[3,4]} value={filterAuthor} onChange={updateAuthor}/>
+            <Select options={[1,2]} value={filterCategory} onChange={updateCategory}/>
         </div>
     )
 }
+
+
+
+
 
 
 
