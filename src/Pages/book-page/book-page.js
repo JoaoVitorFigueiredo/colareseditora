@@ -42,6 +42,14 @@ export function BookPage() {
     } else {
         priceDisplay = "Preço sob consulta.";
     }
+    let bookDescription;
+    if (book.longDescription){
+        bookDescription = <p>book.longDescription</p>
+    }
+    else {
+        bookDescription = <p>A descrição para este livro está indisponível. Contacte-nos se desejar mais informações sobre a obra.</p>
+    }
+
 
 
 
@@ -67,7 +75,7 @@ export function BookPage() {
             </div>
             <div className="book-description" style={{ display: descriptionExpanded ? 'block' : 'none' }}>
                 <h3>Está interessado? Explore mais sobre o livro!</h3>
-                <p>{book.longDescription}</p>
+                {bookDescription}
             </div>
             <div className="toggle-description" onClick={toggleDescription}>
                 {descriptionExpanded ? <i className="fas fa-minus"></i> : <i className="fas fa-plus"></i>}
