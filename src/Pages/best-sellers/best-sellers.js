@@ -11,7 +11,7 @@ export function BestSellers(){
     },[])
     const fetchBooks = async () => {
         try {
-            const response = await fetch('http://localhost:3030/books/?score=5',{method:"GET"})
+            const response = await fetch('http://localhost:3030/books/?_sort=-score&_limit=5',{method:"GET"})
             const booksData = await response.json();
             setBooks(booksData)
         }

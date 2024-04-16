@@ -20,6 +20,7 @@ export function BookThumbnail(props) {
 
     return (
         <div className="book-thumbnail">
+
             {props.book.thumbnailUrl ? (
                 <Link to={`/book/${props.book.id}`}>
                     <img className="thumbnail-image" src={props.book.thumbnailUrl} alt={props.book.title} />
@@ -30,7 +31,9 @@ export function BookThumbnail(props) {
                 </div>
             )}
             <div className="book-details">
-                <p className="book-title">{props.book.title}</p>
+                <div className="book-title">
+                    <p className="book-title">{props.book.title}</p>
+                </div>
                 <ul className="author-list">
                     {props.book.authors.map((author, index) => <li key={index}>{author}</li>)}
                 </ul>
@@ -39,7 +42,7 @@ export function BookThumbnail(props) {
                 </ul>
                 <p className="book-price">{priceDisplay}</p>
                 <p className="book-status">{props.book.status}</p>
-                <p className="book-score">{"★".repeat(props.book.score)}</p>
+                <p className="book-score">{"★".repeat(props.book.score)+"☆".repeat(5-props.book.score)}</p>
                 <Link to={`/book/${props.book.id}`} className="buy-button">
                     {buttonBookPageText}
                     {iconBookPage}
