@@ -8,7 +8,7 @@ function Footer() {
             <div className="footer-container">
                 <div className="footer-section">
                     <h3 className="footer-heading">Sobre o J&J Books</h3>
-                    <p className="footer-text">Somos uma livraria online com uma ambição de vender conhecimento e histórias para os mais curiosos. Temos uma parceria com a livraria Colares localizada em Sintra.</p>
+                    <p className="footer-text">Somos uma livraria online com uma ambição de vender conhecimento e histórias para os mais curiosos. Temos uma parceria com a editora Colares localizada em Sintra.</p>
                 </div>
                 <div className="footer-section">
                     <h3 className="footer-heading">Links Importantes</h3>
