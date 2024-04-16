@@ -28,16 +28,22 @@ export function BookPage() {
         }
     };
 
+
+
     if (loading) return <div>A procurar...</div>;
     if (error) return <div>Erro: {error}</div>;
     if (!book) return <div>Nenhum livro encontrado.</div>;
 
     let priceDisplay;
+    let button;
     if (book.price) {
         priceDisplay = `${book.price}€`;
+        button = <button>Adicionar ao carrinho!</button>;
     } else {
         priceDisplay = "Preço sob consulta.";
     }
+
+
 
     // Função para alternar a expansão da descrição
     const toggleDescription = () => {
@@ -69,7 +75,7 @@ export function BookPage() {
             <div className="book-actions">
                 <p>Estado: {book.status}</p>
                 <p>Preço: {priceDisplay}</p>
-                <button>Comprar agora!</button>
+                {button}
             </div>
         </div>
     );

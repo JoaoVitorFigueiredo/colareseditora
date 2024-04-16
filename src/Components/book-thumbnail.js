@@ -6,10 +6,16 @@ import NoImage from '../assets/book-noimage.png';
 export function BookThumbnail(props) {
 
     let priceDisplay;
+    let buttonBookPageText;
+    let iconBookPage;
     if (props.book.price) {
         priceDisplay = `${props.book.price}€`;
+        buttonBookPageText = "Comprar agora!"
+        iconBookPage = <i className="fas fa-shopping-cart"></i>
     } else {
         priceDisplay = "Preço sob consulta.";
+        buttonBookPageText = "Ver mais!";
+        iconBookPage = <i className="fas fa-shopping-cart"></i>
     }
 
     return (
@@ -35,8 +41,8 @@ export function BookThumbnail(props) {
                 <p className="book-status">{props.book.status}</p>
                 <p className="book-score">{"★".repeat(props.book.score)}</p>
                 <Link to={`/book/${props.book.id}`} className="buy-button">
-                    Adicionar ao carrinho 
-                    <i className="fas fa-shopping-cart"></i>
+                    {buttonBookPageText}
+                    {iconBookPage}
                 </Link>
             </div>
         </div>
