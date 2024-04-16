@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import {CartContext} from "../../App"
 import "./book-page.css";
 
 export function BookPage() {
-    let { id } = useParams();
+    const { id } = useParams();
     const [book, setBook] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [descriptionExpanded, setDescriptionExpanded] = useState(false); // Estado para controlar a expansão da descrição
+
+    const {cart, setCart} = useContext(CartContext)
 
     useEffect(() => {
         fetchBooks();
@@ -28,6 +31,20 @@ export function BookPage() {
         }
     };
 
+    function addCart(){
+        setCart(
+            cart.map((item) => {
+                if(item.id === book.id) {
+                    return { ...item, quantity: item.quantity + 1 }
+                } else {
+                    return item
+                }
+            })
+        )
+        console.log(cart)
+    }
+
+
 
 
     if (loading) return <div>A procurar...</div>;
@@ -38,7 +55,7 @@ export function BookPage() {
     let button;
     if (book.price) {
         priceDisplay = `${book.price}€`;
-        button = <button>Adicionar ao carrinho!</button>;
+        button = <button onClick={addCart}>Adicionar ao carrinho!</button>;
     } else {
         priceDisplay = "Preço sob consulta.";
     }
@@ -49,10 +66,6 @@ export function BookPage() {
     else {
         bookDescription = <p>A descrição para este livro está indisponível. Contacte-nos se desejar mais informações sobre a obra.</p>
     }
-
-
-
-
     // Função para alternar a expansão da descrição
     const toggleDescription = () => {
         setDescriptionExpanded(!descriptionExpanded);

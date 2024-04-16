@@ -4,7 +4,6 @@ import {Filter} from "../../Components/filter/filter"
 
 export function Shop(){
     const [books, setBooks] = useState([]);
-
     async function selectBooks(selectedOption,filterString,filterOption){
         try {
             const response = await fetch(`http://localhost:3030/books?${filterOption}_like=${filterString}&_sort=${selectedOption}`,{method:"GET"})

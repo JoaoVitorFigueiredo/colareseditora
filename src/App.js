@@ -1,5 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {createContext, useState} from "react";
 
 import Navbar from "./Components/navbar/navbar.js"
 import Footer from "./Components/footer/footer.js"
@@ -11,9 +12,15 @@ import {Sales} from "./Pages/sales/books"
 import {BookPage} from "./Pages/book-page/book-page";
 import {Search} from "./Pages/search/search.js";
 
+
+export const CartContext = createContext([])
+
 function App() {
+  const [cart, setCart] = useState(CartContext)
+
   return (
     <div className="App">
+      <CartContext.Provider value={{cart,setCart}}>
     <Router>
       <Navbar/>
       <Routes>
@@ -26,7 +33,9 @@ function App() {
       </Routes>
       <Footer/>
     </Router>
+        </CartContext.Provider>
     </div>
+
   );
 }
 
