@@ -13,10 +13,10 @@ import {BookPage} from "./Pages/book-page/book-page";
 import {Search} from "./Pages/search/search.js";
 
 
-export const CartContext = createContext([])
+export const CartContext = createContext({books:[],total:0,volume:0})
 
 function App() {
-  const [cart, setCart] = useState(CartContext)
+  const [cart, setCart] = useState({books:[],total:0,volume:0})
 
   return (
     <div className="App">
@@ -29,7 +29,7 @@ function App() {
         <Route path="/sales" element={<Sales/>}></Route>
         <Route path="/cart" element={<Cart/>}></Route>
         <Route path="/book/:id" element={<BookPage/>}></Route>
-        <Route path="/search/:searchString" element={<Search/>}></Route>
+        <Route path="/search" element={<Search/>}></Route>
       </Routes>
       <Footer/>
     </Router>

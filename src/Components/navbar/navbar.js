@@ -27,7 +27,7 @@ function NavBar() {
                         value={searchString}
                         onChange={updateSearch}
                     />
-                    <Link to={`/search/${searchString}`} className="nav-search-icon">
+                    <Link to={`/search/searchString=${searchString}&page=1`} className="nav-search-icon">
                         <i className="fas fa-search"></i>
                     </Link>
                 </div>

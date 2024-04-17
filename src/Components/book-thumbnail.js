@@ -9,7 +9,7 @@ export function BookThumbnail(props) {
     let buttonBookPageText;
     let iconBookPage;
     if (props.book.price) {
-        priceDisplay = `${props.book.price}€`;
+        priceDisplay = `${props.book.price.toFixed(2)}€`;
         buttonBookPageText = "Comprar agora!"
         iconBookPage = <i className="fas fa-shopping-cart"></i>
     } else {

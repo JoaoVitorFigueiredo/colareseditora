@@ -32,16 +32,24 @@ export function BookPage() {
     };
 
     function addCart(){
-        setCart(
-            cart.map((item) => {
-                if(item.id === book.id) {
-                    return { ...item, quantity: item.quantity + 1 }
-                } else {
-                    return item
-                }
-            })
-        )
-        console.log(cart)
+        const existingBook = cart.books.find(item => item.id === book.id);
+        if (existingBook) {
+            setCart(prevCart => ({
+                ...prevCart,
+                books: prevCart.books.map(item =>
+                    item.id === existingBook.id ? { ...item, quantity: item.quantity + 1 } : item
+                ),
+                total: prevCart.total + book.price,
+                volume: prevCart.volume + 1
+            }));
+        } else {
+            setCart(prevCart => ({
+                books: [...prevCart.books, { id: book.id, thumbnailUrl: book.thumbnailUrl, price:book.price, quantity: 1 }],
+                total: prevCart.total + book.price,
+                volume: prevCart.volume + 1
+            }));
+        }
+
     }
 
 
@@ -61,7 +69,7 @@ export function BookPage() {
     }
     let bookDescription;
     if (book.longDescription){
-        bookDescription = <p>book.longDescription</p>
+        bookDescription = <p>{book.longDescription}</p>
     }
     else {
         bookDescription = <p>A descrição para este livro está indisponível. Contacte-nos se desejar mais informações sobre a obra.</p>

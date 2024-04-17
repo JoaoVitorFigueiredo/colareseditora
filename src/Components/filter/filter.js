@@ -32,6 +32,7 @@ export function Filter({selectBooks}){
             <select id="dropdown" value={filterOption} onChange={updateFilterOption}>
                 <option value="authors">Autor</option>
                 <option value="categories">Categoria</option>
+                <option value="title">Título</option>
             </select>
         </div>
     )
