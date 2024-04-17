@@ -23,7 +23,6 @@ function NavBar() {
 
     function handleEnter(e){
         if (e.key === "Enter") {
-            console.log("Enterrrr")
             navigator(`/search?searchOption=${searchOption}&searchString=${searchString}&page=1`)
         }
     }
