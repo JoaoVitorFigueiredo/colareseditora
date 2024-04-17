@@ -48,9 +48,6 @@ export function Shop(){
     }
     return (
         <div>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
             <Filter/>
             {books.map(book => <BookThumbnail book={book}/>)}
             <PageNav currentPage={page} currentPath={location.pathname} currentParams={search} pageNumber={pageNumber}/>

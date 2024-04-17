@@ -1,16 +1,31 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import booklogo from '../../assets/logo-jj.png';
 
 function NavBar() {
+    const navigator = useNavigate()
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => setIsMenuOpen(prevState => !prevState);
 
     const [searchString, setSearchString] = useState('');
 
-    function updateSearch(e) {
+    const [searchOption, setSearchOption] = useState('title')
+
+    function updateSearchString(e) {
         setSearchString(e.target.value);
+    }
+
+    function updateSearchOption(e){
+        setSearchOption(e.target.value)
+    }
+
+    function handleEnter(e){
+        if (e.key === "Enter") {
+            console.log("Enterrrr")
+            navigator(`/search?searchOption=${searchOption}&searchString=${searchString}&page=1`)
+        }
     }
 
     return (
@@ -21,17 +36,25 @@ function NavBar() {
                 </Link>
 
                 <div className="nav-search-container">
-                    <input 
+                    <input
                         type="text"
                         placeholder="Pesquisa..."
                         className="nav-search-input"
                         value={searchString}
-                        onChange={updateSearch}
+                        onChange={updateSearchString}
+                        onKeyDown={handleEnter}
                     />
-                    <Link to={`/search?searchString=${searchString}&page=1`} className="nav-search-icon">
-                        <i className="fas fa-search"></i>
-                    </Link>
+                    <select id="dropdown" value={searchOption} onChange={updateSearchOption}>
+                        <option value="title">Título</option>
+                        <option value="authors">Autor</option>
+                        <option value="categories">Categoria</option>
+                    </select>
                 </div>
+
+                <Link to={`/search?searchOption=${searchOption}&searchString=${searchString}&page=1`}
+                      className="nav-search-icon">
+                    <i className="fas fa-search"></i>
+                </Link>
 
                 <div className="nav-toggle" onClick={toggleMenu}>
                     <div className={isMenuOpen ? "nav-icon open" : "nav-icon"}></div>
@@ -44,7 +67,8 @@ function NavBar() {
                         </Link>
                     </li>
                     <li className="nav-item" onClick={toggleMenu}>
-                        <Link exact to="/shop?selectedOption=-score&filterOption=authors&filterString=&page=1" activeClassName="active" className="nav-links">
+                        <Link exact to="/shop?selectedOption=-score&filterOption=authors&filterString=&page=1"
+                              activeClassName="active" className="nav-links">
                             Loja
                         </Link>
                     </li>
