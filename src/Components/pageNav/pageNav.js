@@ -100,7 +100,6 @@ export function PageNav(props) {
             >
               {nextPage}
             </Link>
-            <p></p>
             <Link
               to={path.replaceAll(`page=${currentPage}`, `page=${next2Page}`)}
               className="nav-link"
@@ -130,11 +129,11 @@ export function PageNav(props) {
   return (
     <div className="page-nav">
       <PrevPageButton />
-      {prev2Page > 1 ? <p>...</p> : prev2Page}
+      {prev2Page > 1 ? <p>...</p> : null}
       <PrevPages />
       <strong>{currentPage}</strong>
       <NextPages />
-      {next2Page < pageNumber ? <p>...</p> : next2Page}
+      {next2Page < pageNumber ? <p>...</p> : null}
       <NextPageButton />
     </div>
   );

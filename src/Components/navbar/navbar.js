@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import booklogo from '../../assets/logo-jj.png';
+import {CartContext} from "../../App";
+
 
 function NavBar() {
     const navigator = useNavigate()
@@ -12,6 +14,10 @@ function NavBar() {
     const [searchString, setSearchString] = useState('');
 
     const [searchOption, setSearchOption] = useState('title')
+
+    const {cart} = useContext(CartContext)
+
+
 
     function updateSearchString(e) {
         setSearchString(e.target.value);
@@ -30,9 +36,9 @@ function NavBar() {
     return (
         <nav className="navbar">
             <div className="nav-container">
-                <Link exact to="/" className="nav-logo">
+                <NavLink exact to="/" className="nav-logo">
                     <img src={booklogo} alt="J&J Books Logo" className="logo-image"/>
-                </Link>
+                </NavLink>
 
                 <div className="nav-search-container">
                     <input
@@ -56,25 +62,28 @@ function NavBar() {
 
                 <ul className={isMenuOpen ? "nav-menu active" : "nav-menu"}>
                     <li className="nav-item" onClick={toggleMenu}>
-                        <Link exact to="/" activeClassName="active" className="nav-links">
+                        <NavLink exact to="/" activeClassName="active" className="nav-links">
                             Home
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="nav-item" onClick={toggleMenu}>
-                        <Link exact to="/shop?selectedOption=-score&filterOption=authors&filterString=&page=1"
+                        <NavLink exact to="/shop?selectedOption=-score&filterOption=authors&filterString=&page=1"
                               activeClassName="active" className="nav-links">
                             Loja
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="nav-item" onClick={toggleMenu}>
-                        <Link exact to="/sales" activeClassName="active" className="nav-links">
+                        <NavLink exact to="/sales" activeClassName="active" className="nav-links">
                             Promoções
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="nav-item" onClick={toggleMenu}>
-                        <Link exact to="/cart" activeClassName="active" className="nav-links">
+                        <NavLink exact to="/cart" activeClassName="active" className="nav-links">
                             <i className="fas fa-shopping-cart"></i>
-                        </Link>
+                            {cart.volume > 0 && (
+                                <span className="cart-item-count">{cart.volume}</span>
+                            )}
+                        </NavLink>
                     </li>
                 </ul>
             </div>
