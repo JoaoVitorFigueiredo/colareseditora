@@ -1,4 +1,4 @@
-import {React, useEffect, useState, useContext} from "react";
+import {React, useContext} from "react";
 import {CartContext} from "../../App"
 import {Link} from "react-router-dom";
 import NoImage from "../../assets/book-noimage.png";
@@ -79,6 +79,7 @@ export const Cart = () =>{
         <div>
             <p>Parece que seu carrinho está sem nenhum livro...</p>
             <p>Escolha na loja os artigos que deseja e retorne aqui para realizar sua compra!</p>
+            <Link to="/shop"><button>Para a loja</button></Link>
         </div>
         )
     }
