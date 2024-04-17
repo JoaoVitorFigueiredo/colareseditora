@@ -34,9 +34,8 @@ export function Shop(){
             setPageNumber(totalPages);
 
             if (selectedOption){
-                const response = await fetch(`http://localhost:3030/books?${filterOption}_like=${filterString}&_sort=${selectedOption}&_order=${selectedOrder}&_per_page=10&_page=${page}`,{method:"GET"})
+                const response = await fetch(`http://localhost:3030/books?price_ne=&${filterOption}_like=${filterString}&_sort=${selectedOption}&_order=${selectedOrder}&_per_page=10&_page=${page}`,{method:"GET"})
                 let booksData = await response.json();
-
                 setBooks(booksData)
             }
             else{
