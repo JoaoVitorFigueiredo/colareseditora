@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import booklogo from '../../assets/logo-jj.png';
 
 function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +17,7 @@ function NavBar() {
         <nav className="navbar">
             <div className="nav-container">
                 <Link exact to="/" className="nav-logo">
-                    <img src="https://raw.githubusercontent.com/JoaoVitorFigueiredo/colareseditora/main/public/logo-jj.png?token=GHSAT0AAAAAACPULIW7WALP76LUADRSTC7SZQ5HORA" alt="J&J Books Logo" className="logo-image"/>
+                    <img src={booklogo} alt="J&J Books Logo" className="logo-image"/>
                 </Link>
 
                 <div className="nav-search-container">
