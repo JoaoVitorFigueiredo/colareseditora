@@ -27,7 +27,7 @@ function NavBar() {
                         value={searchString}
                         onChange={updateSearch}
                     />
-                    <Link to={`/search/searchString=${searchString}&page=1`} className="nav-search-icon">
+                    <Link to={`/search?searchString=${searchString}&page=1`} className="nav-search-icon">
                         <i className="fas fa-search"></i>
                     </Link>
                 </div>
@@ -43,7 +43,7 @@ function NavBar() {
                         </Link>
                     </li>
                     <li className="nav-item" onClick={toggleMenu}>
-                        <Link exact to="/shop" activeClassName="active" className="nav-links">
+                        <Link exact to="/shop?page=1" activeClassName="active" className="nav-links">
                             Loja
                         </Link>
                     </li>

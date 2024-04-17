@@ -15,7 +15,7 @@ export const Cart = () =>{
                 volume: prevCart.volume + 1
             }));
         }
-        function removeBook(){
+        function subtractBook(){
             setCart(prevCart => ({
                 ...prevCart,
                 books: prevCart.books.map(item =>
@@ -25,6 +25,14 @@ export const Cart = () =>{
                 volume: prevCart.volume - 1
             }));
             setCart(prevCart => {return {...prevCart, books: prevCart.books.filter(item => item.quantity > 0)}})
+        }
+        function removeBook(){
+            setCart(prevCart => ({
+                ...prevCart,
+                total: prevCart.total - (book.price*book.quantity),
+                volume: prevCart.volume - book.quantity
+            }));
+            setCart(prevCart => {return {...prevCart, books: prevCart.books.filter(item => item.id !== book.id)}})
         }
 
         return (
@@ -43,9 +51,10 @@ export const Cart = () =>{
                     <p className="book-title">{book.title}</p>
                 </div>
                <div className="buantity-buttons"></div>
-                <button onClick={removeBook}>-</button>
+                <button onClick={subtractBook}>-</button>
                 <p>{book.quantity}</p>
                 <button onClick={addBook}>+</button>
+                <button onClick={removeBook}>Remover</button>
             </div>
         )
     }
