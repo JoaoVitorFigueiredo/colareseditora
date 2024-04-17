@@ -8,26 +8,25 @@ export function Search(){
     const { search } = location
     let page = new URLSearchParams(location.search).get("page")
     let searchString = new URLSearchParams(location.search).get("searchString")
+    let searchOption = new URLSearchParams(location.search).get("searchOption")
     const [books, setBook] = useState([])
     const [pageNumber,setPageNumber] = useState()
 
 
     useEffect(() => {
         fetchBooks();
-    },[page])
+    },[page, searchString, searchOption])
 
     const fetchBooks = async () => {
         try {
-            const responseTotal = await fetch(`http://localhost:3030/books`,{method:"GET"})
+            const responseTotal = await fetch(`http://localhost:3030/books?title_like=${searchString}`,{method:"GET"})
             const allBooks = await responseTotal.json();
             const totalBooks = allBooks.length
             setPageNumber(Math.ceil(totalBooks / 10))
 
 
-            const response = await fetch(`http://localhost:3030/books?title_like=${searchString}&_per_page=10&_page=${page}`,{method:"GET"})
+            const response = await fetch(`http://localhost:3030/books?${searchOption}_like=${searchString}&_per_page=10&_page=${page}`,{method:"GET"})
             const bookData = await response.json();
-            console.log(response)
-            console.log(bookData)
             setBook(bookData)
         }
         catch (error){
