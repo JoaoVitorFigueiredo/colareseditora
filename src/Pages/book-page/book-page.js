@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import {CartContext} from "../../App"
 import "./book-page.css";
+import {addCartUtil} from "../../CartUtils";
 
 export function BookPage() {
     const { id } = useParams();
@@ -10,7 +11,7 @@ export function BookPage() {
     const [error, setError] = useState(null);
     const [descriptionExpanded, setDescriptionExpanded] = useState(false); // Estado para controlar a expansão da descrição
 
-    const {cart, setCart} = useContext(CartContext)
+    const cartContext = useContext(CartContext)
 
     useEffect(() => {
         fetchBooks();
@@ -32,28 +33,8 @@ export function BookPage() {
     };
 
     function addCart(){
-        const existingBook = cart.books.find(item => item.id === book.id);
-        if (existingBook) {
-            setCart(prevCart => ({
-                ...prevCart,
-                books: prevCart.books.map(item =>
-                    item.id === existingBook.id ? { ...item, quantity: item.quantity + 1 } : item
-                ),
-                total: prevCart.total + book.price,
-                volume: prevCart.volume + 1
-            }));
-        } else {
-            setCart(prevCart => ({
-                books: [...prevCart.books, { id: book.id, thumbnailUrl: book.thumbnailUrl, price:book.price, quantity: 1 }],
-                total: prevCart.total + book.price,
-                volume: prevCart.volume + 1
-            }));
-        }
-
+        addCartUtil(cartContext, book)
     }
-
-
-
 
     if (loading) return <div>A procurar...</div>;
     if (error) return <div>Erro: {error}</div>;

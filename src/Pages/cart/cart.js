@@ -1,38 +1,19 @@
-import {React, useContext} from "react";
+import React, {useContext} from "react";
 import {CartContext} from "../../App"
 import {Link} from "react-router-dom";
 import NoImage from "../../assets/book-noimage.png";
+import {addBookUtil, removeBookUtil, subtractBookUtil} from "../../CartUtils";
 
 export const Cart = () =>{
     function BookInCart({book}){
         function addBook() {
-            setCart(prevCart => ({
-                ...prevCart,
-                books: prevCart.books.map(item =>
-                    item.id === book.id ? { ...item, quantity: item.quantity + 1 } : item
-                ),
-                total: prevCart.total + book.price,
-                volume: prevCart.volume + 1
-            }));
+            addBookUtil(cartContext,book)
         }
         function subtractBook(){
-            setCart(prevCart => ({
-                ...prevCart,
-                books: prevCart.books.map(item =>
-                    item.id === book.id ? { ...item, quantity: item.quantity - 1 } : item
-                ),
-                total: prevCart.total - book.price,
-                volume: prevCart.volume - 1
-            }));
-            setCart(prevCart => {return {...prevCart, books: prevCart.books.filter(item => item.quantity > 0)}})
+            subtractBookUtil(cartContext,book)
         }
         function removeBook(){
-            setCart(prevCart => ({
-                ...prevCart,
-                total: prevCart.total - (book.price*book.quantity),
-                volume: prevCart.volume - book.quantity
-            }));
-            setCart(prevCart => {return {...prevCart, books: prevCart.books.filter(item => item.id !== book.id)}})
+            removeBookUtil(cartContext,book)
         }
 
         return (
@@ -58,7 +39,8 @@ export const Cart = () =>{
             </div>
         )
     }
-    const {cart, setCart} = useContext(CartContext)
+    const cartContext = useContext(CartContext)
+    const {cart} = cartContext
 
     if (cart.volume>0){
         return (
