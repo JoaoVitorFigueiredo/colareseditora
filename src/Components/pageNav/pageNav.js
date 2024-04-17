@@ -1,10 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-export function PageNav(){
-    const currentPage = currentPage
-    const currentPath = currentPath
-    const pageNumber = pageNumber
+export function PageNav(props){
+    const currentPage = parseInt(props.currentPage)
+    const currentParams = props.currentParams
+    const pageNumber = parseInt(props.pageNumber)
+    const currentPath = props.currentPath
+    const path = currentPath+currentParams
+
     let prevPage;
     let prev2Page
     let nextPage
@@ -17,21 +20,25 @@ export function PageNav(){
         }
     }
 
+
+
     if (currentPage + 1 <= pageNumber){
+
         nextPage= currentPage + 1
         if(nextPage+1 <= pageNumber){
             next2Page = currentPage + 2
         }
     }
 
+
     function PrevPageButton(){
-        if (prev2Page > 0){
-            return <Link to={currentPath.replaceAll(`_page=${currentPage}`,`_page=${prevPage}`)}>icon pra voltar</Link>
+        if (prevPage){
+            return <Link to={path.replaceAll(`page=${currentPage}`,`page=${prevPage}`)}>icon pra voltar</Link>
         }
     }
     function NextPageButton(){
-        if (prev2Page > 0){
-            return <Link to={currentPath.replaceAll(`_page=${currentPage}`,`_page=${nextPage}`)}>icon pra avançar</Link>
+        if (nextPage){
+            return <Link to={path.replaceAll(`page=${currentPage}`,`page=${nextPage}`)}>icon pra avançar</Link>
         }
     }
 
@@ -40,15 +47,15 @@ export function PageNav(){
             if (prev2Page) {
                 return (
                     <div>
-                        <Link to={currentPath.replaceAll(`_page=${currentPage}`,`_page=${prev2Page}`)}>{prev2Page}</Link>
-                        <Link to={currentPath.replaceAll(`_page=${currentPage}`,`_page=${prevPage}`)}>{prevPage}</Link>
+                        <Link to={path.replaceAll(`page=${currentPage}`,`page=${prev2Page}`)}>{prev2Page}</Link>
+                        <Link to={path.replaceAll(`page=${currentPage}`,`page=${prevPage}`)}>{prevPage}</Link>
                     </div>
                 )
             }
             else{
                 return(
                     <div>
-                        <Link to={currentPath.replaceAll(`_page=${currentPage}`,`_page=${prevPage}`)}>{prevPage}</Link>
+                        <Link to={path.replaceAll(`page=${currentPage}`,`page=${prevPage}`)}>{prevPage}</Link>
                     </div>
                 )
             }
@@ -59,15 +66,16 @@ export function PageNav(){
             if (next2Page) {
                 return (
                     <div>
-                        <Link to={currentPath.replaceAll(`_page=${currentPage}`,`_page=${next2Page}`)}>{next2Page}</Link>
-                        <Link to={currentPath.replaceAll(`_page=${currentPage}`,`_page=${nextPage}`)}>{nextPage}</Link>
+                        <Link to={path.replaceAll(`page=${currentPage}`,`page=${nextPage}`)}>{nextPage}</Link>
+                        <p></p>
+                        <Link to={path.replaceAll(`page=${currentPage}`,`page=${next2Page}`)}>{next2Page}</Link>
                     </div>
                 )
             }
             else{
                 return(
                     <div>
-                        <Link to={currentPath.replaceAll(`_page=${currentPage}`,`_page=${nextPage}`)}>{nextPage}</Link>
+                        <Link to={path.replaceAll(`page=${currentPage}`,`page=${nextPage}`)}>{nextPage}</Link>
                     </div>
                 )
             }

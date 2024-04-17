@@ -1,12 +1,17 @@
 import React, {useState, useEffect} from "react";
-export function Filter({selectBooks}){
+import {useLocation, useNavigate} from "react-router-dom"
+export function Filter(){
+    const location = useLocation()
+
+    const navigate = useNavigate()
+
     const [selectedOption, setOrderOption] = useState("-score");
     const [filterOption, setFilterOption] = useState("authors")
     const [filterString, setFilterString] = useState("")
 
 
     useEffect(() => {
-        selectBooks(selectedOption,filterString,filterOption)
+        navigate(`${location.pathname}?selectedOption=${selectedOption}&filterOption=${filterOption}&filterString=${filterString}&page=1`)
     },[selectedOption,filterOption,filterString]);
 
     const updateFilter = (e) => {

@@ -43,7 +43,7 @@ function NavBar() {
                         </Link>
                     </li>
                     <li className="nav-item" onClick={toggleMenu}>
-                        <Link exact to="/shop?page=1" activeClassName="active" className="nav-links">
+                        <Link exact to="/shop?selectedOption=-score&filterOption=authors&filterString=&page=1" activeClassName="active" className="nav-links">
                             Loja
                         </Link>
                     </li>
