@@ -6,7 +6,7 @@ function Footer() {
     const location = useLocation()
     function CallForAction() {
 
-        if (location.pathname !== "/cart"){
+        if (location.pathname == "/shop" || location.pathname == "/search" || location.pathname == "/book"){
             return(
                 <div className="cart-call-for-action">
                     <h3>Deseja finalizar sua compra?</h3>
@@ -31,13 +31,12 @@ function Footer() {
                         Sintra.</p>
                 </div>
                 <div className="footer-section">
-                    <h3 className="footer-heading">Links Importantes</h3>
+                    <h3 className="footer-heading">Links importantes</h3>
                     <ul className="footer-list">
                         <li className="footer-list-item"><Link to="/" className="footer-link">Página principal</Link>
                         </li>
-                        <li className="footer-list-item"><Link to="/link2" className="footer-link">Termos e
-                            Condições</Link></li>
-                        <li className="footer-list-item"><Link to="/link3" className="footer-link">Promoções</Link></li>
+                        <li className="footer-list-item"><Link to="/cart" className="footer-link">Carrinho</Link></li>
+                        <li className="footer-list-item"><Link to="/shop" className="footer-link">Loja</Link></li>
                     </ul>
                 </div>
             </div>
