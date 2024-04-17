@@ -11,7 +11,7 @@ export function Filter(){
 
 
     useEffect(() => {
-        navigate(`${location.pathname}?selectedOption=${selectedOption}&filterOption=${filterOption}&filterString=${filterString}&page=1`)
+        navigate(`${location.pathname}?selectedOption=${selectedOption}&filterOption=${filterOption}&filterString=${filterString}&per_page=10&page=1`)
     },[selectedOption,filterOption,filterString]);
 
     const updateFilter = (e) => {
@@ -28,10 +28,10 @@ export function Filter(){
     return (
         <div>
             <select id="dropdown" value={selectedOption} onChange={updateSort}>
-                <option value="-score">Classificação ↓</option>
-                <option value="score">Classificação ↑</option>
-                <option value="price">Preço ↑</option>
-                <option value="-price">Preço ↓</option>
+                <option value="score&order=Desc">Classificação ↓</option>
+                <option value="score&order=Asc">Classificação ↑</option>
+                <option value="price&order=Asc">Preço ↑</option>
+                <option value="price&order=Desc">Preço ↓</option>
             </select>
             <input value={filterString} onChange={updateFilter}/>
             <select id="dropdown" value={filterOption} onChange={updateFilterOption}>
