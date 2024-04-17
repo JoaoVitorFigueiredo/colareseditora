@@ -3,7 +3,6 @@ import {CartContext} from "../../App"
 import {Link} from "react-router-dom";
 import NoImage from "../../assets/book-noimage.png";
 import {addBookUtil, removeBookUtil, subtractBookUtil} from "../../CartUtils";
-import "./cart.css";
 
 export const Cart = () =>{
     function BookInCart({book}){
@@ -51,7 +50,7 @@ export const Cart = () =>{
                     {cart.books.map(book => <BookInCart key={book.id} book={book} />)}
                 </div>
                 <div className="cart-summary">
-                    <p>Preço total: {cart.total.toFixed(2)}€</p>
+                    <p>Preço total: {cart.total.toFixed(2)}</p>
                     <p>Quantidade de itens: {cart.volume}</p>
                     <button className="checkout-button">Check-out</button>
                 </div>

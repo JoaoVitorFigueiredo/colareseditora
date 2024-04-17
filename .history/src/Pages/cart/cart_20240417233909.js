@@ -3,7 +3,6 @@ import {CartContext} from "../../App"
 import {Link} from "react-router-dom";
 import NoImage from "../../assets/book-noimage.png";
 import {addBookUtil, removeBookUtil, subtractBookUtil} from "../../CartUtils";
-import "./cart.css";
 
 export const Cart = () =>{
     function BookInCart({book}){
@@ -18,7 +17,7 @@ export const Cart = () =>{
         }
 
         return (
-            <div className="book-item">
+            <div>
                 {book.thumbnailUrl ? (
                     <Link to={`/book/${book.id}`}>
                         <img className="thumbnail-image" src={book.thumbnailUrl} alt={book.title} />
@@ -28,19 +27,18 @@ export const Cart = () =>{
                         <img className="thumbnail-image" src={NoImage} alt={book.title} />
                     </div>
                 )}
-    
-                <div className="book-details">
+
+                <div className="book-title">
                     <p className="book-title">{book.title}</p>
-                    <div className="quantity-buttons">
-                        <button onClick={subtractBook}>-</button>
-                        <p>{book.quantity}</p>
-                        <button onClick={addBook}>+</button>
-                        <button className="remove-button" onClick={removeBook}>Remover</button>
-                    </div>
                 </div>
+               <div className="buantity-buttons"></div>
+                <button onClick={subtractBook}>-</button>
+                <p>{book.quantity}</p>
+                <button onClick={addBook}>+</button>
+                <button onClick={removeBook}>Remover</button>
             </div>
-        );
-    };
+        )
+    }
     const cartContext = useContext(CartContext)
     const {cart} = cartContext
 
@@ -51,7 +49,7 @@ export const Cart = () =>{
                     {cart.books.map(book => <BookInCart key={book.id} book={book} />)}
                 </div>
                 <div className="cart-summary">
-                    <p>Preço total: {cart.total.toFixed(2)}€</p>
+                    <p>Preço total: {cart.total.toFixed(2)}</p>
                     <p>Quantidade de itens: {cart.volume}</p>
                     <button className="checkout-button">Check-out</button>
                 </div>
