@@ -2,12 +2,6 @@
 
 This project was mainly inspired by our College course and can be used to inspire more students in their learning process to!
 
-## TO-DO LIST
-
-- Search Engine
-- Shopping Cart
-- And more!
-
 ## Wiki / Documentation
 
 1. Make sure you clone our project with `git clone https://github.com/JoaoVitorFigueiredo/colareseditora.git && cd colareseditora`.
