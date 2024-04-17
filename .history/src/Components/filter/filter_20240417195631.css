@@ -1,0 +1,36 @@
+/* Estilo para o contêiner do filtro */
+.filter-container {
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+  
+  /* Estilo para o seletor de ordenação */
+  #sort-dropdown {
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 14px;
+  }
+  
+  /* Estilo para o campo de entrada de texto */
+  .filter-input {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  /* Estilo para o seletor de opção de filtro */
+  #filter-dropdown {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 14px;
+  }
+  

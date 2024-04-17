@@ -1,0 +1,10 @@
+.shop-header {
+    font-size: 5em;
+    font-weight: bold;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    color: #333; /* Cor do texto */
+    text-transform: uppercase; /* Transforma o texto em maiúsculas */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra do texto */
+    letter-spacing: 2px; /* Espaçamento entre as letras */
+}
