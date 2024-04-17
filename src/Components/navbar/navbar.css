@@ -96,6 +96,11 @@
   }
   
   @media screen and (max-width: 960px) {
+
+    .nav-search-container {
+        flex-grow: 1; /* Faz o container de pesquisa ocupar todo o espaço disponível */
+    }
+    
     .nav-menu {
       display: flex;
       flex-direction: column;
@@ -145,22 +150,33 @@
 
 .nav-search-container {
     position: relative;
+    display: flex; /* Adiciona flexbox para alinhar itens */
 }
 
 .nav-search-input {
-    border: none;
-    border-radius: 20px;
-    padding: 8px 35px 8px 12px;
-    font-size: 1rem;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 35px 8px 12px;
+  font-size: 1rem;
+  margin-right: 10px; /* Adiciona margem entre o input e o dropdown */
+  flex-grow: 1; /* Faz o input ocupar o espaço restante */
 }
 
 .nav-search-icon {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    color: #666;
-    cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  color: #666;
+  cursor: pointer;
 }
 
-
+#dropdown {
+  border: none;
+  border-radius: 20px;
+  padding: 8px 12px; /* Ajuste conforme necessário */
+  font-size: 1rem;
+  background-color: #fff; /* Ajuste conforme necessário */
+  color: #666; /* Ajuste conforme necessário */
+  cursor: pointer;
+}

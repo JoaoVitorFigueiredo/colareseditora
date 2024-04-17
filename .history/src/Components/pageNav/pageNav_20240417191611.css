@@ -1,0 +1,21 @@
+.page-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0; /* Adicionando espaçamento vertical */
+  }
+  
+  .nav-link {
+    margin: 0 5px;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .nav-link:hover {
+    background-color: #f0f0f0;
+  }
+  

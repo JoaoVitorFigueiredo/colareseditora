@@ -1,0 +1,14 @@
+.page-nav {
+    align-items: center;
+  }
+  
+  .nav-link {
+    margin: 0 5px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    color: #666;
+  }
+  
