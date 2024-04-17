@@ -5,7 +5,7 @@ export function Filter(){
 
     const navigate = useNavigate()
 
-    const [selectedOption, setOrderOption] = useState("-score");
+    const [selectedOption, setOrderOption] = useState("score&order=desc");
     const [filterOption, setFilterOption] = useState("authors")
     const [filterString, setFilterString] = useState("")
 
@@ -28,10 +28,10 @@ export function Filter(){
     return (
         <div>
             <select id="dropdown" value={selectedOption} onChange={updateSort}>
-                <option value="score&order=Desc">Classificação ↓</option>
-                <option value="score&order=Asc">Classificação ↑</option>
-                <option value="price&order=Asc">Preço ↑</option>
-                <option value="price&order=Desc">Preço ↓</option>
+                <option value="score&order=desc">Classificação ↓</option>
+                <option value="score&order=asc">Classificação ↑</option>
+                <option value="price&order=asc">Preço ↑</option>
+                <option value="price&order=desc">Preço ↓</option>
             </select>
             <input value={filterString} onChange={updateFilter}/>
             <select id="dropdown" value={filterOption} onChange={updateFilterOption}>

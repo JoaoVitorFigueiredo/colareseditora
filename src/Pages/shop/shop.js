@@ -14,7 +14,7 @@ export function Shop(){
     const selectedOption = new URLSearchParams(location.search).get("selectedOption")
     const filterString = new URLSearchParams(location.search).get("filterString")
     const filterOption = new URLSearchParams(location.search).get("filterOption")
-    const order = new URLSearchParams(location.search).get("order")
+    const selectedOrder = new URLSearchParams(location.search).get("order")
     const [pageNumber,setPageNumber] = useState(0)
     const [books, setBooks] = useState([]);
 
@@ -22,11 +22,11 @@ export function Shop(){
     useEffect(() =>{
             fetchBooks()
         },
-        [selectedOption,filterString,filterOption,page])
+        [selectedOption,filterString,filterOption,selectedOrder,page])
 
     const fetchBooks = async ()=> {
         try {
-            const responseTotal = await fetch(`http://localhost:3030/books?${filterOption}_like=${filterString}&_sort=${selectedOption}&_order=${order}`, { method: "GET" });
+            const responseTotal = await fetch(`http://localhost:3030/books?${filterOption}_like=${filterString}`, { method: "GET" });
             const allBooks = await responseTotal.json();
             const totalBooks = allBooks.length;
             const totalPages = Math.ceil(totalBooks / 10);
@@ -34,7 +34,7 @@ export function Shop(){
             setPageNumber(totalPages);
 
             if (selectedOption){
-                const response = await fetch(`http://localhost:3030/books?${filterOption}_like=${filterString}&_sort=${selectedOption}&_per_page=10&_page=${page}`,{method:"GET"})
+                const response = await fetch(`http://localhost:3030/books?${filterOption}_like=${filterString}&_sort=${selectedOption}&_order=${selectedOrder}&_per_page=10&_page=${page}`,{method:"GET"})
                 let booksData = await response.json();
 
                 setBooks(booksData)

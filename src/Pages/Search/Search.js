@@ -23,8 +23,11 @@ export function Search(){
             const totalBooks = allBooks.length
             setPageNumber(Math.ceil(totalBooks / 10))
 
-            const response = await fetch(`http://localhost:3030/books?title_like=${searchString}&_limit=10&_page=${page}`,{method:"GET"})
+
+            const response = await fetch(`http://localhost:3030/books?title_like=${searchString}&_per_page=10&_page=${page}`,{method:"GET"})
             const bookData = await response.json();
+            console.log(response)
+            console.log(bookData)
             setBook(bookData)
         }
         catch (error){
