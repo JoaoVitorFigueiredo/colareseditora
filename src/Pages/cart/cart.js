@@ -1,6 +1,3 @@
-import React, { useContext } from "react";
-import { CartContext } from "../../App";
-import { Link } from "react-router-dom";
 import React, {useContext} from "react";
 import {CartContext} from "../../App"
 import {Link} from "react-router-dom";
@@ -31,42 +28,15 @@ export const Cart = () =>{
                     </div>
                 )}
 
-              <div className="book-details">
-                <p className="book-title">AAAA {book.pageCount}</p>
-                <div className="quantity-buttons">
-                  <button onClick={() => subtractBook(book)}>-</button>
-                  <p>{book.quantity}</p>
-                  <button onClick={() => addBook(book)}>+</button>
+                <div className="book-title">
+                    <p className="book-title">{book.title}</p>
                 </div>
-              </div>
-              <button className="remove-button" onClick={() => removeBook(book)}>
-                Remover
-              </button>
+               <div className="buantity-buttons"></div>
+                <button onClick={subtractBook}>-</button>
+                <p>{book.quantity}</p>
+                <button onClick={addBook}>+</button>
+                <button onClick={removeBook}>Remover</button>
             </div>
-          ))}
-        </div>
-        <div className="cart-summary">
-          <p>Preço total: {cart.total.toFixed(2)}€</p>
-          <p>Quantidade de itens: {cart.volume}</p>
-          <button className="checkout-button">Checkout  <i class="fa-duotone fa-credit-card"></i></button>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-        <div className="empty-cart">
-        <p>Parece que seu carrinho está sem nenhum livro...</p>
-        <p>
-          Escolha na loja os artigos que deseja e retorne aqui para realizar
-          sua compra!
-        </p>
-        <Link className="empty-cart-link" to="/shop">
-        <i className="empty-cart-icon fas fa-shopping-cart"></i>
-        </Link>
-      </div>
-    );
-  }
-};
         )
     }
     const cartContext = useContext(CartContext)
