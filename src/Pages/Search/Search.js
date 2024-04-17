@@ -33,10 +33,20 @@ export function Search(){
             console.error(`Error fetching data: ${error}`) // Era engraçado fazer isso daqui enviar pra uma página de erro.
         }
     }
-    return (
-        <div>
-            {books.map(book => <BookThumbnail book={book}/>)}
-            <PageNav currentPage={page} currentPath={location.pathname} currentParams={search} pageNumber={pageNumber}/>
-        </div>
-    )
+    if (books.length > 0) {
+        return (
+            <div>
+                {books.map(book => <BookThumbnail book={book}/>)}
+                <PageNav currentPage={page} currentPath={location.pathname} currentParams={search}
+                         pageNumber={pageNumber}/>
+            </div>
+        )
+    }else{
+        return(
+            <div>
+                <p>Nenhum resultado encontrado para <strong>{searchString}</strong> em <strong>{searchOption === "authors" ? "autor" : searchOption === "title" ? "título" : "categoria"}</strong></p>
+                <p>Verifique os parâmetros da sua pesquisa ou visite a loja para ter acesso a todos os nossos títulos</p>
+            </div>
+        )
+    }
 }
