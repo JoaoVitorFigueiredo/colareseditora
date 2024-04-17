@@ -49,8 +49,8 @@ export function Shop(){
         <div>
             <h1 className="shop-header">Biblioteca de Livros</h1>
             <Filter/>
-            {books.map(book => <BookThumbnail book={book}/>)}
-            <PageNav currentPage={page} currentPath={location.pathname} currentParams={search} pageNumber={pageNumber}/>
+            {books.length > 0? books.map(book => <BookThumbnail book={book}/>):<p>Nenhum resultado encontrado :/</p>}
+            {books.length > 0? <PageNav currentPage={page} currentPath={location.pathname} currentParams={search} pageNumber={pageNumber}/>:null}
             </div>
     )
 }
