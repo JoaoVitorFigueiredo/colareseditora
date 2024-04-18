@@ -1,0 +1,36 @@
+/* Estilo para o contêiner principal */
+div {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Estilo para o texto do parágrafo */
+p {
+    margin-bottom: 10px;
+}
+
+/* Estilo para o texto forte (strong) */
+strong {
+    color: #ff5f6d;
+}
+
+/* Estilo para a segunda linha de texto */
+p:nth-child(2) {
+    color: #666;
+}
+
+/* Estilo para links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

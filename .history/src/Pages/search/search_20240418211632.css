@@ -1,0 +1,23 @@
+.search-result {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    padding: 100px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.search-result p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.search-result p strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.search-result p:first-child {
+    margin-bottom: 10px;
+}
