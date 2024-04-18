@@ -43,18 +43,21 @@ export function BookThumbnail({book}) {
                 <Link to={`/book/${book.id}`}>
                     <div className="thumbnail-container">
                         <img className="thumbnail-image" src={book.thumbnailUrl || NoImage} alt={book.title}/>
+                        <p className="book-classification">{"★".repeat(book.score)}{"☆".repeat(5 - book.score)}</p>
                     </div>
                 </Link>
                 <p className="book-title">{book.title}</p>
                 <p className="book-price">{priceDisplay}</p>
+
                 {book.price ? <button onClick={addCart} className="buy-button">
-                    <i className="fas fa-shopping-cart"></i>
+                    Adicionar <i className="fas fa-shopping-cart"></i>
                 </button> :
+                <Link to={`/book/${book.id}`} >
                     <button className="buy-button">
-                        <Link to={`/book/${book.id}`} >
-                            <i className="fa-solid fa-eye"></i>
-                        </Link>
-                    </button>}
+                        Detalhes <i class="fa-solid fa-eye check-icon"></i>
+                    </button>
+                    </Link>
+                }
 
             </div>
         );
