@@ -62,7 +62,7 @@ export const Cart = () =>{
             <div className="empty-cart">
                 <p>Parece que seu carrinho está sem nenhum livro...</p>
                 <p>Escolha na loja os artigos que deseja e retorne aqui para realizar sua compra!</p>
-                <Link to="/shop"><button>Para a loja</button></Link>
+                <Link to="/shop?selectedOption=-score&filterOption=authors&filterString=&page=1"><button>Para a loja</button></Link>
             </div>
         );
     }

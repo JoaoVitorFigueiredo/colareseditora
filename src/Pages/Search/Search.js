@@ -17,6 +17,10 @@ export function Search(){
         fetchBooks();
     },[page, searchString, searchOption])
 
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    }, [page])
+
     const fetchBooks = async () => {
         try {
             const responseTotal = await fetch(`http://localhost:3030/books?title_like=${searchString}`,{method:"GET"})
