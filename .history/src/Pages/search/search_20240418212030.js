@@ -51,7 +51,7 @@ export function Search(){
         return(
             <div class="search-result">
                 <p>Nenhum resultado encontrado para <strong>{searchString}</strong> em <strong>{searchOption === "authors" ? "autor" : searchOption === "title" ? "título" : "categoria"}</strong>.</p>
-                <p>Verifica os parâmetros da tua pesquisa ou visita a loja para ter acesso a todos os nossos títulos.</p>
+                <p>Verifica os parâmetros da tua pesquisa ou visita a loja para ter acesso a todos os nossos títulos</p>
             </div>
         )
     }
