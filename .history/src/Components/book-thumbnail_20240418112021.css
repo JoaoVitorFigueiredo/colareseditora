@@ -22,20 +22,12 @@
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
-
-    @media screen and (max-width: 768px) {
-        border-radius: 10px;
-    }
 }
 
 .thumbnail-image {
     width: 50%;
     height: auto;
     transition: transform 0.3s ease; /* Smooth transition on hover */
-
-    @media screen and (max-width: 768px) {
-        width: 100%;
-    }
 }
 
 .thumbnail-image:hover {
@@ -61,10 +53,6 @@
     text-decoration: none;
     border-radius: 20px;
     transition: background-color 0.3s ease; /* Smooth transition on hover */
-
-    @media screen and (max-width: 768px) {
-        width: 100%;
-    }
 }
 
 .buy-button:hover {

@@ -61,10 +61,6 @@
     text-decoration: none;
     border-radius: 20px;
     transition: background-color 0.3s ease; /* Smooth transition on hover */
-
-    @media screen and (max-width: 768px) {
-        width: 100%;
-    }
 }
 
 .buy-button:hover {
