@@ -82,7 +82,6 @@ export function BookPage() {
                 {descriptionExpanded ? <i className="fas fa-minus"></i> : <i className="fas fa-plus"></i>}
             </div>
             <div className="book-actions">
-                <p>Estado: {book.status}</p>
                 <p>Preço: {priceDisplay}</p>
                 {button}
             </div>
