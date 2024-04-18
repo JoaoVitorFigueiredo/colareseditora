@@ -1,0 +1,59 @@
+.book-thumbnail {
+    width: calc(20% - 20px); /* A largura ajustada para acomodar o padding */
+    margin: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s ease; /* Transição suave ao passar o mouse */
+    display: inline-block; /* Posiciona os elementos em linha */
+    vertical-align: top; /* Alinha os elementos pela parte superior */
+
+    @media screen and (max-width: 768px) {
+        width: calc(100% - 20px);
+    }
+}
+
+.thumbnail-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: 768px) {
+        border-radius: 10px;
+    }
+}
+
+.thumbnail-image {
+    width: 50%;
+    height: auto;
+    transition: transform 0.3s ease; 
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.book-title {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.book-price {
+    margin-top: 5px;
+    color: #000000; 
+}
+
+.buy-button {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}

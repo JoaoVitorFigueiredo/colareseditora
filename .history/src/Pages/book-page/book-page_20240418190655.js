@@ -1,0 +1,91 @@
+import React, { useEffect, useState, useContext } from "react";
+import { useParams } from "react-router-dom";
+import {CartContext} from "../../App"
+import "./book-page.css";
+import {addCartUtil} from "../../Utils/CartUtils";
+
+export function BookPage() {
+    const { id } = useParams();
+    const [book, setBook] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [descriptionExpanded, setDescriptionExpanded] = useState(false); // Estado para controlar a expansão da descrição
+
+    const cartContext = useContext(CartContext)
+
+    useEffect(() => {
+        fetchBooks();
+    }, [id]);
+
+    const fetchBooks = async () => {
+        try {
+            const response = await fetch(`http://localhost:3030/books/?id=${id}`);
+            if (!response.ok) {
+                throw new Error('Resposta não sucedida do servidor');
+            }
+            const bookData = await response.json();
+            setBook(bookData[0]);
+            setLoading(false);
+        } catch (error) {
+            setError(error.message);
+            setLoading(false);
+        }
+    };
+
+    function addCart(){
+        addCartUtil(cartContext, book)
+    }
+
+    if (loading) return <div>A procurar...</div>;
+    if (error) return <div>Erro: {error}</div>;
+    if (!book) return <div>Nenhum livro encontrado.</div>;
+
+    let priceDisplay;
+    let button;
+    if (book.price) {
+        priceDisplay = `${book.price}€`;
+        button = <button onClick={addCart}>Adicionar ao carrinho!</button>;
+    } else {
+        priceDisplay = "Preço sob consulta.";
+    }
+    let bookDescription;
+    if (book.longDescription){
+        bookDescription = <p>{book.longDescription}</p>
+    }
+    else {
+        bookDescription = <p>A descrição para este livro está indisponível. Contacte-nos se desejar mais informações sobre a obra.</p>
+    }
+    // Função para alternar a expansão da descrição
+    const toggleDescription = () => {
+        setDescriptionExpanded(!descriptionExpanded);
+    };
+
+    return (
+        <div className="page">
+            <div className="book-details">
+                <div className="book-info">
+                    <h2>{book.title}</h2>
+                    <p className="authors">{book.authors.join(", ")}</p>
+                    <p className="description">{book.shortDescription}</p>
+                    <p><strong>ISBN:</strong> {book.isbn}</p>
+                    <p><strong>Páginas:</strong> {book.pageCount}</p>
+                    <p><strong>Data de Publicação:</strong> {new Date(book.publishedDate.$date).toLocaleDateString()}</p>
+                    <p><strong>Categorias:</strong> {book.categories.join(", ")}</p>
+                    <div className="toggle-description" onClick={toggleDescription}>
+                        {descriptionExpanded ? <i className="fas fa-minus"></i> : <i className="fas fa-plus"></i>}
+                    </div>
+                </div>
+                <div className="book-actions">
+                    <div className="price-add">
+                        <p>Preço: {priceDisplay}</p>
+                        <button onClick={addCart}>Adicionar ao carrinho!</button>
+                    </div>
+                </div>
+            </div>
+            <div className="book-description" style={{ display: descriptionExpanded ? 'block' : 'none' }}>
+                <h3>Está interessado? Explore mais sobre o livro!</h3>
+                {book.longDescription ? <p>{book.longDescription}</p> : <p>A descrição para este livro está indisponível. Contacte-nos se desejar mais informações sobre a obra.</p>}
+            </div>
+        </div>
+    );
+}
