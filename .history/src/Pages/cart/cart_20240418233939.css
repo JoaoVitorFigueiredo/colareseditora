@@ -170,11 +170,11 @@
   .quantity-buttons {
     flex-direction: row; 
     justify-content: center; 
-    margin-top: 10px; 
+    margin-top: 10px; /* Adicionar espaço superior */
   }
 
   .quantity-buttons button, .remove-button {
-    margin: 0 5px; 
+    margin: 0 5px; /* Adicionar espaço entre os botões */
   }
 
   .cart-summary {

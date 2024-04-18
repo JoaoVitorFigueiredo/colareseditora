@@ -174,7 +174,7 @@
   }
 
   .quantity-buttons button, .remove-button {
-    margin: 0 5px; 
+    margin: 0 5px; /* Adicionar espaço entre os botões */
   }
 
   .cart-summary {

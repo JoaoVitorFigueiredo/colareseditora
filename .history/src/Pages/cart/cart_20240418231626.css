@@ -70,7 +70,7 @@
   background-color: rgba(250, 255, 255, 0.332);
   max-height: 200px; 
   margin-left: 20px;
-  margin-right: 40px;
+  margin-right: 20px;
   margin-top: 50px;
 }
 
@@ -167,30 +167,27 @@
     margin-right: 0;
   }
 
-  .quantity-buttons {
-    flex-direction: row; 
-    justify-content: center; 
-    margin-top: 10px; 
-  }
-
   .quantity-buttons button, .remove-button {
-    margin: 0 5px; 
+    margin-right: 0; 
+    margin-bottom: 10px;
+    margin-left: 20px; 
   }
 
   .cart-summary {
-    padding: 10px; 
+    padding: 10px; /* Further reduce padding for smaller screens */
+    justify-content: center; 
   }
 
   .cart-summary p {
-    font-size: 20px; 
+    font-size: 20px; /* Further decrease font size for smaller screens */
   }
 
   .cart-summary p strong {
-    font-size: 50px; 
+    font-size: 50px; /* Further decrease font size for smaller screens */
   }
 
   .checkout-button {
-    font-size: 12px; 
+    font-size: 12px; /* Further decrease font size for smaller screens */
   }
   
 }

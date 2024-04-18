@@ -6,11 +6,3 @@
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-@media (max-width: 767px) {
-    .shop-header {
-        font-size: 3em;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-}
-

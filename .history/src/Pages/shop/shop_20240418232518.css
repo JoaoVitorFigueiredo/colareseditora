@@ -6,6 +6,8 @@
     text-transform: uppercase;
     letter-spacing: 2px;
 }
+
+/* Media query for screens smaller than 768px */
 @media (max-width: 767px) {
     .shop-header {
         font-size: 3em;
@@ -14,3 +16,11 @@
     }
 }
 
+/* Media query for screens between 768px and 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+    .shop-header {
+        font-size: 4em;
+        margin-top: 75px;
+        margin-bottom: 75px;
+    }
+}

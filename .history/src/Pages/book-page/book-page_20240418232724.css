@@ -128,21 +128,6 @@
         width: 100%;
         margin-top: 10px;
     }
-
-    .additional-info {
-        padding: 50px;
-    }
-    .additional-info button {
-        padding: 8px 30px;
-        font-size: 14px;
-    }
-    
-    .additional-info p {
-        font-size: 14px;
-    }
-    .additional-info p strong {
-        font-size: 60px;
-    }
 }
 
 .book-description {

@@ -5,12 +5,5 @@
     margin-bottom: 100px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-family: 'Montserrat', sans-serif; /* Modern font stack from POKELX */
 }
-@media (max-width: 767px) {
-    .shop-header {
-        font-size: 3em;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-}
-

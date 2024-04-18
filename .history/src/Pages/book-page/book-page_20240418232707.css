@@ -41,19 +41,19 @@
     outline: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
-    margin-top: auto; /* Botão no final da box */
+    margin-top: auto; /* Botão no final da página */
 }
 
 .additional-info p {
     margin: 0;
     font-size: 16px;
-    color: #333; 
+    color: #333; /* Cor do texto */
 }
 
 .additional-info p strong {
-    font-weight: bold; 
-    color: #465260; 
-    font-size: 80px; 
+    font-weight: bold; /* Deixa o texto em negrito */
+    color: #465260; /* Cor azul */
+    font-size: 80px; /* Ajusta o tamanho do texto */
 }
 
 .additional-info .arrival-info {
@@ -63,7 +63,7 @@
 
 .additional-info .arrival-info p {
     font-size: 20px; 
-    color: #666; 
+    color: #666; /* Cor mais escura para informações adicionais */
 }
 
 
@@ -127,21 +127,6 @@
     .book-actions button {
         width: 100%;
         margin-top: 10px;
-    }
-
-    .additional-info {
-        padding: 50px;
-    }
-    .additional-info button {
-        padding: 8px 30px;
-        font-size: 14px;
-    }
-    
-    .additional-info p {
-        font-size: 14px;
-    }
-    .additional-info p strong {
-        font-size: 60px;
     }
 }
 

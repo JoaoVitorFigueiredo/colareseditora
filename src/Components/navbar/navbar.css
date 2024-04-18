@@ -94,62 +94,6 @@
     width: 2rem;
     height: 2rem;
   }
-  
-  @media screen and (max-width: 960px) {
-
-    .nav-search-container {
-        flex-grow: 1; /* Faz o container de pesquisa ocupar todo o espaço disponível */
-    }
-    
-    .nav-menu {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      border-top: 1px solid #fff;
-      position: absolute;
-      top: 80px; /* Altura da barra de navegação */
-      left: -110%; /* Esconde o menu completamente inicialmente */
-      opacity: 1;
-      transition: all 0.5s ease;
-      margin-top: 0; /* Remove o espaçamento branco entre a barra de navegação e o menu */
-    }
-    
-    
-  
-    .nav-menu.active {
-      background: #6699c6;
-      left: 0;
-      opacity: 1;
-      transition: all 0.5s ease;
-      z-index: 1;
-    }
-    .nav-item .active {
-      color: black;
-      border: none;
-    }
-    .nav-links {
-      padding: 1.5rem;
-      width: 100%;
-      display: table;
-    }
-  
-    .nav-logo .icon {
-      width: 2rem;
-      height: 2rem;
-    }
-  
-    .nav-icon {
-      display: block;
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translate(-100%, -50%);
-      width: 2rem;
-      height: 2rem;
-      cursor: pointer;
-      color: #ffffff;
-    }
-  }
 
 .nav-search-container {
     position: relative;
@@ -191,6 +135,58 @@
 @media screen and (max-width: 960px) {
 
   .nav-search-container {
+      flex-grow: 1; /* Faz o container de pesquisa ocupar todo o espaço disponível */
+  }
+  
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid #fff;
+    position: absolute;
+    top: 80px; /* Altura da barra de navegação */
+    left: -110%; /* Esconde o menu completamente inicialmente */
+    opacity: 1;
+    transition: all 0.5s ease;
+    margin-top: 0; /* Remove o espaçamento branco entre a barra de navegação e o menu */
+  }
+
+
+  .nav-menu.active {
+    background: #6699c6;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  .nav-item .active {
+    color: black;
+    border: none;
+  }
+  .nav-links {
+    padding: 1.5rem;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-logo .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .nav-icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-100%, -50%);
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    color: #ffffff;
+  }
+
+  .nav-search-container {
     display: none;
   }
 
@@ -198,4 +194,3 @@
     display: none;
   }
 }
-
