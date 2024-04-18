@@ -20,7 +20,7 @@
     height: auto;
     border-radius: 8px;
     margin-bottom: 20px;
-    object-fit: contain; /* FIX Versão PRECANDIDATE RELEASE: Adicionado para garantir que a imagem não distorça */
+    object-fit: contain; /* FIX VBETA: Adicionado para garantir que a imagem não distorça */
 }
 .book-info {
     flex: 1;

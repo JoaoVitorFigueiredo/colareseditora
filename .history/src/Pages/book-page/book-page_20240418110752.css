@@ -8,7 +8,7 @@
 .book-details {
     display: flex;
     flex-direction: column;
-    align-items: center; /* FIX Versão PRECANDIDATE RELEASE: Adicionado para centralizar a imagem */
+    align-items: center; /* Adicionado para centralizar a imagem */
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     border-radius: 8px; 
@@ -20,7 +20,7 @@
     height: auto;
     border-radius: 8px;
     margin-bottom: 20px;
-    object-fit: contain; /* FIX Versão PRECANDIDATE RELEASE: Adicionado para garantir que a imagem não distorça */
+    
 }
 .book-info {
     flex: 1;
