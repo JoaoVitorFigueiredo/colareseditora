@@ -27,7 +27,7 @@ export const Cart = () =>{
                         <button onClick={() => subtractBookUtil(cartContext,book)}>-</button>
                         <span>{book.quantity}</span>
                         <button onClick={() => addBookUtil(cartContext, book)}>+</button>
-                        <button className="remove-button" onClick={() => removeBookUtil(cartContext,book)}>Remover <i class="fa-solid fa-basket-shopping-minus"></i></button>
+                        <button className="remove-button" onClick={() => removeBookUtil(cartContext,book)}>Remover</button>
                     </div>
                 </div>
             </div>
@@ -42,11 +42,19 @@ export const Cart = () =>{
                 <div className="cart-items">
                     {cart.books.map(book => <BookInCart key={book.id} book={book} />)}
                 </div>
+                <div class="additional-info">
+                <p><strong>30</strong></p>
+                <div class="arrival-info">
+                    <p><i class="fa-solid fa-circle-check"></i> {homedelivery}</p>
+                    <p><i class="fa-solid fa-circle-check"></i> {storepickup}</p>
+                </div>
+                {button}
+            </div>
                 <div className="cart-summary">
-                    <p><strong>Total: {cart.total.toFixed(2)}€</strong></p>
+                    <p>Preço total: {cart.total.toFixed(2)}€</p>
                     <p>Quantidade de itens: {cart.volume}</p>
                     <button className="checkout-button">Checkout</button>
-                    <div><button className="clear-cart-button" onClick={() => clearCartUtil(cartContext)}>Apagar tudo <i class="fa-solid fa-trash-xmark"></i></button></div>
+                    <div><button className="clear-cart-button" onClick={() => clearCartUtil(cartContext)}>Apagar tudo</button></div>
                 </div>
             </div>
         );

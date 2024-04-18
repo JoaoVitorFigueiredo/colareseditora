@@ -69,9 +69,7 @@
   border-radius: 8px;
   background-color: rgba(250, 255, 255, 0.332);
   max-height: 200px; 
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 50px;
+  margin-left: 40px;
 }
 
 .cart-summary p {

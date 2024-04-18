@@ -46,7 +46,7 @@ export const Cart = () =>{
                     <p><strong>Total: {cart.total.toFixed(2)}€</strong></p>
                     <p>Quantidade de itens: {cart.volume}</p>
                     <button className="checkout-button">Checkout</button>
-                    <div><button className="clear-cart-button" onClick={() => clearCartUtil(cartContext)}>Apagar tudo <i class="fa-solid fa-trash-xmark"></i></button></div>
+                    <div><button className="clear-cart-button" onClick={() => clearCartUtil(cartContext)}>Apagar tudo</button></div>
                 </div>
             </div>
         );

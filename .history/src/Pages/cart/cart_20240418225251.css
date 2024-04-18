@@ -70,20 +70,18 @@
   background-color: rgba(250, 255, 255, 0.332);
   max-height: 200px; 
   margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 50px;
 }
 
 .cart-summary p {
   margin: 0;
   font-size: 16px;
-  color: #333;
+  color: #333; /* Cor do texto */
 }
 
 .cart-summary p strong {
-  font-weight: bold; 
-  color: #465260;
-  font-size: 80px; 
+  font-weight: bold; /* Deixa o texto em negrito */
+  color: #465260; /* Cor azul */
+  font-size: 80px; /* Ajusta o tamanho do texto */
 }
 
 .checkout-button {
@@ -170,6 +168,6 @@
   .quantity-buttons button, .remove-button {
     margin-right: 0; 
     margin-bottom: 10px;
-    margin-left: 20px; 
+    margin-left: 20px; /* Adicionando margem à esquerda para separar os botões */
   }
 }
