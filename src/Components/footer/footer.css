@@ -1,6 +1,6 @@
 .footer {
-    background-color: #2c3e50; /* Darker blue background color */
-    color: #fff; /* White text color */
+    background-color: #2c3e50;
+    color: #fff; 
     padding: 50px 0;
     margin-top: 50px;
     text-align: center;
@@ -45,7 +45,7 @@
 }
 
 .footer-link:hover {
-    color: #f39c12; /* Yellow color on hover */
+    color: #f39c12; 
 }
 
 /* Copyright */
@@ -56,8 +56,8 @@
 
 .footer-divider {
     width: 75%;
-    border-top: 1px solid #6f6e6e; /* Cor e estilo da linha */
-    margin: 0 auto; /* Espaçamento acima e abaixo da linha */
+    border-top: 1px solid #6f6e6e; 
+    margin: 0 auto; 
 }
 
 /* Media query for smaller screens */

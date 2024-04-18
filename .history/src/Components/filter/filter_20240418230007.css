@@ -13,6 +13,7 @@
     font-size: 14px;
   }
   
+  /* Estilo para o campo de entrada de texto */
   .filter-input {
     flex: 1;
     margin-right: 10px;
@@ -22,6 +23,7 @@
     font-size: 14px;
   }
   
+  /* Estilo para o seletor de opção de filtro */
   #filter-dropdown {
     padding: 8px;
     border-radius: 5px;
