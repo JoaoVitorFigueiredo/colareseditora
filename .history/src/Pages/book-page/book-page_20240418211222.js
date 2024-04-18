@@ -81,7 +81,7 @@ export function BookPage() {
 
             <div className="book-details">
 
-            <img className="thumbnail-image" src={book.thumbnailUrl || NoImage} alt={book.title} onError={(e) => { if (e.target.src !== NoImage) e.target.src = NoImage; }}/>
+                <img alt={book.title} src={book.thumbnailUrl}> </img>
                 <div className="book-info">
                     <h2>{book.title}</h2>
                     <p className="authors">{book.authors.join(", ")}</p>

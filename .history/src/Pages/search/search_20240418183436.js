@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 import {BookThumbnail} from "../../Components/book-thumbnail";
 import {PageNav} from "../../Components/pageNav/pageNav";
-import "./search.css";
 
 export function Search(){
     const  location  = useLocation()
@@ -49,8 +48,8 @@ export function Search(){
         )
     }else{
         return(
-            <div class="search-result">
-                <p>Nenhum resultado encontrado para <strong>{searchString}</strong> em <strong>{searchOption === "authors" ? "autor" : searchOption === "title" ? "título" : "categoria"}</strong>.</p>
+            <div>
+                <p>Nenhum resultado encontrado para <strong>{searchString}</strong> em <strong>{searchOption === "authors" ? "autor" : searchOption === "title" ? "título" : "categoria"}</strong></p>
                 <p>Verifique os parâmetros da sua pesquisa ou visite a loja para ter acesso a todos os nossos títulos</p>
             </div>
         )

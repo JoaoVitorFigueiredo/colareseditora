@@ -2,8 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import {CartContext} from "../../App"
 import "./book-page.css";
-import {addCartUtil} from "../../Utils/CartUtils"
-import NoImage from '../../assets/book-noimage.png';
+import {addCartUtil} from "../../Utils/CartUtils";
 
 export function BookPage() {
     const { id } = useParams();
@@ -66,7 +65,7 @@ export function BookPage() {
     }
     let bookDescription;
     if (book.longDescription){
-        bookDescription = <p>{book.longDescription}</p>
+        bookDescription = <p>{book.longDescreiption}</p>
     }
     else {
         bookDescription = <p>A descrição para este livro está indisponível. Contacte-nos se desejar mais informações sobre a obra.</p>
@@ -81,7 +80,7 @@ export function BookPage() {
 
             <div className="book-details">
 
-            <img className="thumbnail-image" src={book.thumbnailUrl || NoImage} alt={book.title} onError={(e) => { if (e.target.src !== NoImage) e.target.src = NoImage; }}/>
+                <img alt={book.title} src={book.thumbnailUrl}></img>
                 <div className="book-info">
                     <h2>{book.title}</h2>
                     <p className="authors">{book.authors.join(", ")}</p>
@@ -96,8 +95,7 @@ export function BookPage() {
                 </div>
                 <div className="book-description" style={{ display: descriptionExpanded ? 'block' : 'none' }}>
                     <h3>Está interessado? Explore mais sobre o livro!</h3>
-                    {bookDescription
-            }
+                    {bookDescription}
                 </div>
             </div>
             <div class="additional-info">
