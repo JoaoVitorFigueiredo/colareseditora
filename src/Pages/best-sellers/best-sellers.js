@@ -2,10 +2,6 @@ import React, {useState, useEffect} from "react";
 import {BookThumbnail} from "../../Components/book-thumbnail";
 import './best-sellers.css';
 
-import primavera from "../../assets/primavera.jpg"
-
-import Carousel from "react-bootstrap/Carousel";
-import {Image} from "react-bootstrap";
 
 export function BestSellers(){
     const [books, setBooks] = useState([])
@@ -24,25 +20,6 @@ export function BestSellers(){
         }
     }
 
-    function InfoSlider(){
-        return (
-            <Carousel>
-                <Carousel.Item >
-                    <Carousel.Caption>
-                        <div style={{BackgroundImage: {primavera}}}>
-                            <h1>Chegaram os descontos de primavera!</h1>
-                            <p>Celebre o florecer com novos livros na J&J Books</p>
-                        </div>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-
-                </Carousel.Item>
-
-            </Carousel>
-        )
-    }
-
     return (
         <div>
             <div>
@@ -53,7 +30,6 @@ export function BestSellers(){
                 <h1 className="best-sellers-header">Melhor avaliados</h1>
                 {books.map(book => <BookThumbnail book={book}/>)}
             </div>
-
         </div>
     )
 }
