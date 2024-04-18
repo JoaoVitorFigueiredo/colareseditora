@@ -16,7 +16,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
 
     @media screen and (max-width: 768px) {
         border-radius: 10px;
