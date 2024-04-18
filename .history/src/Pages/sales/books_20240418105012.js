@@ -1,4 +1,4 @@
-/* Neste momento, esta página está desativada */
+/* Cart.css */
 import {React} from "react";
 
 export const Sales = () =>{
