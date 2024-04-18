@@ -55,9 +55,9 @@
 .buy-button {
     display: inline-block;
     margin-top: 10px;
-    background-color: #007bff;
+    background-color: #65a5e8;
     color: #fff;
-    padding: 8px 20px;
+    padding: 8px 40px;
     text-decoration: none;
     border-radius: 20px;
     transition: background-color 0.3s ease; /* Smooth transition on hover */
@@ -65,6 +65,10 @@
     @media screen and (max-width: 768px) {
         width: 100%;
     }
+}
+
+.check-icon {
+    color: white;
 }
 
 .buy-button:hover {
