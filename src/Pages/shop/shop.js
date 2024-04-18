@@ -23,6 +23,10 @@ export function Shop(){
         },
         [selectedOption,filterString,filterOption,selectedOrder,page])
 
+    useEffect(()=>{
+        window.scrollTo(0,300)
+    }, [page])
+
     const fetchBooks = async ()=> {
         try {
             const responseTotal = await fetch(`http://localhost:3030/books?${filterOption}_like=${filterString}`, { method: "GET" });
