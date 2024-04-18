@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./footer.css";
 
 function Footer() {
@@ -10,9 +10,9 @@ function Footer() {
             return(
                 <div className="cart-call-for-action">
                     <h3>Deseja finalizar sua compra?</h3>
-                    <Link to="/cart">
+                    <NavLink to="/cart">
                     <button>Vá para o carrinho<i className="fas fa-shopping-cart"/></button>
-                    </Link>
+                    </NavLink>
                 </div>
             )
         }
@@ -33,10 +33,10 @@ function Footer() {
                 <div className="footer-section">
                     <h3 className="footer-heading">Links importantes</h3>
                     <ul className="footer-list">
-                        <li className="footer-list-item"><Link to="/" className="footer-link">Página principal</Link>
+                        <li className="footer-list-item"><NavLink to="/" className="footer-link">Home</NavLink>
                         </li>
-                        <li className="footer-list-item"><Link to="/cart" className="footer-link">Carrinho</Link></li>
-                        <li className="footer-list-item"><Link to="/shop" className="footer-link">Loja</Link></li>
+                        <li className="footer-list-item"><NavLink to="/cart" className="footer-link">Carrinho</NavLink></li>
+                        <li className="footer-list-item"><NavLink to="/shop" className="footer-link">Loja</NavLink></li>
                     </ul>
                 </div>
             </div>

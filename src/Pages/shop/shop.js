@@ -4,12 +4,15 @@ import {Filter} from "../../Components/filter/filter"
 import {PageNav} from "../../Components/pageNav/pageNav";
 import './shop.css';
 
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
+
 import {useLocation} from "react-router-dom"
 
 export function Shop(){
     const  location  = useLocation()
     const { search } = location
     const page = new URLSearchParams(location.search).get("page")
+
     const selectedOption = new URLSearchParams(location.search).get("selectedOption")
     const filterString = new URLSearchParams(location.search).get("filterString")
     const filterOption = new URLSearchParams(location.search).get("filterOption")
@@ -36,7 +39,6 @@ export function Shop(){
 
             setPageNumber(totalPages);
 
-
             const response = await fetch(`http://localhost:3030/books?price_ne=&${filterOption}_like=${filterString}&_sort=${selectedOption}&_order=${selectedOrder}&_per_page=10&_page=${page}`,{method:"GET"})
             const booksData = await response.json();
             setBooks(booksData)
@@ -51,6 +53,6 @@ export function Shop(){
             <Filter/>
             {books.length > 0? books.map(book => <BookThumbnail book={book}/>):<p>Nenhum resultado encontrado :/</p>}
             {books.length > 0? <PageNav currentPage={page} currentPath={location.pathname} currentParams={search} pageNumber={pageNumber}/>:null}
-            </div>
+        </div>
     )
 }
