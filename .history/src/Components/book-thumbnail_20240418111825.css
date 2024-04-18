@@ -12,16 +12,11 @@
     }
 }
 
-
-.book-thumbnail:hover {
-    transform: translateY(-5px); /* Move thumbnail up slightly on hover */
-}
-
 .thumbnail-container {
     position: relative;
     overflow: hidden;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
     @media screen and (max-width: 768px) {
         border-radius: 10px;
@@ -31,15 +26,11 @@
 .thumbnail-image {
     width: 50%;
     height: auto;
-    transition: transform 0.3s ease; /* Smooth transition on hover */
+    transition: transform 0.3s ease; 
 
     @media screen and (max-width: 768px) {
         width: 100%;
     }
-}
-
-.thumbnail-image:hover {
-    transform: scale(1.1); /* Zoom in slightly on hover */
 }
 
 .book-title {
@@ -49,7 +40,7 @@
 
 .book-price {
     margin-top: 5px;
-    color: #000000; /* Subdued color for price */
+    color: #000000; 
 }
 
 .buy-button {
@@ -60,13 +51,9 @@
     padding: 8px 20px;
     text-decoration: none;
     border-radius: 20px;
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    transition: background-color 0.3s ease;
 
     @media screen and (max-width: 768px) {
         width: 100%;
     }
-}
-
-.buy-button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
 }
