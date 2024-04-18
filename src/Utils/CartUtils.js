@@ -12,7 +12,7 @@ export function addCartUtil(cartContext,book) {
         }));
     } else {
         setCart(prevCart => ({
-            books: [...prevCart.books, {id: book.id, thumbnailUrl: book.thumbnailUrl, price: book.price, quantity: 1}],
+            books: [...prevCart.books, {id: book.id, title: book.title, thumbnailUrl: book.thumbnailUrl, price: book.price, quantity: 1}],
             total: prevCart.total + book.price,
             volume: prevCart.volume + 1
         }));
@@ -51,4 +51,11 @@ export function removeBookUtil(cartContext, book){
         volume: prevCart.volume - book.quantity
     }));
     setCart(prevCart => {return {...prevCart, books: prevCart.books.filter(item => item.id !== book.id)}})
+}
+
+export function clearCartUtil(cartContext){
+    const {setCart} = cartContext
+    setCart({books:[],
+    total:0,
+    volume:0})
 }

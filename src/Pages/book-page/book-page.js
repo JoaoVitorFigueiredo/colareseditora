@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import {CartContext} from "../../App"
 import "./book-page.css";
-import {addCartUtil} from "../../CartUtils";
+import {addCartUtil} from "../../Utils/CartUtils";
 
 export function BookPage() {
     const { id } = useParams();

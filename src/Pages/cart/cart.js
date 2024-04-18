@@ -2,20 +2,11 @@ import React, {useContext} from "react";
 import {CartContext} from "../../App"
 import {Link} from "react-router-dom";
 import NoImage from "../../assets/book-noimage.png";
-import {addBookUtil, removeBookUtil, subtractBookUtil} from "../../CartUtils";
+import {addBookUtil, removeBookUtil, subtractBookUtil, clearCartUtil} from "../../Utils/CartUtils";
 import "./cart.css";
 
 export const Cart = () =>{
     function BookInCart({book}){
-        function addBook() {
-            addBookUtil(cartContext,book)
-        }
-        function subtractBook(){
-            subtractBookUtil(cartContext,book)
-        }
-        function removeBook(){
-            removeBookUtil(cartContext,book)
-        }
 
         return (
             <div className="book-item">
@@ -25,22 +16,23 @@ export const Cart = () =>{
                     </Link>
                 ) : (
                     <div className="thumbnail-placeholder">
-                        <img className="thumbnail-image" src={NoImage} alt={book.title} />
+                        <Link to={`/book/${book.id}`}><img className="thumbnail-image" src={NoImage} alt={book.title} /></Link>
                     </div>
                 )}
     
                 <div className="book-details">
                     <p className="book-title">{book.title}</p>
+                    <p>{(book.price*book.quantity).toFixed(2)}€</p>
                     <div className="quantity-buttons">
-                        <button onClick={subtractBook}>-</button>
+                        <button onClick={() => subtractBookUtil(cartContext,book)}>-</button>
                         <p>{book.quantity}</p>
-                        <button onClick={addBook}>+</button>
-                        <button className="remove-button" onClick={removeBook}>Remover</button>
+                        <button onClick={() => addBookUtil(cartContext, book)}>+</button>
+                        <button className="remove-button" onClick={() => removeBookUtil(cartContext,book)}>Remover</button>
                     </div>
                 </div>
             </div>
         );
-    };
+    }
     const cartContext = useContext(CartContext)
     const {cart} = cartContext
 
@@ -55,6 +47,7 @@ export const Cart = () =>{
                     <p>Quantidade de itens: {cart.volume}</p>
                     <button className="checkout-button">Check-out</button>
                 </div>
+                <div><button onClick={() => clearCartUtil(cartContext)}>Clear cart</button></div>
             </div>
         );
     } else {

@@ -13,7 +13,7 @@ export function Filter(){
 
 
     useEffect(() => {
-        navigate(`${location.pathname}?selectedOption=${selectedOption}&filterOption=${filterOption}&filterString=${filterString}&per_page=10&page=1`)
+        navigate(`${location.pathname}?selectedOption=${selectedOption}&filterOption=${filterOption}&filterString=${filterString}&page=1`)
     },[selectedOption,filterOption,filterString]);
 
     const updateFilter = (e) => {

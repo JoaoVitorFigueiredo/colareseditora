@@ -6,7 +6,7 @@ function Footer() {
     const location = useLocation()
     function CallForAction() {
 
-        if (location.pathname == "/shop" || location.pathname == "/search" || location.pathname == "/book"){
+        if (location.pathname !== "/cart"){
             return(
                 <div className="cart-call-for-action">
                     <h3>Deseja finalizar sua compra?</h3>
