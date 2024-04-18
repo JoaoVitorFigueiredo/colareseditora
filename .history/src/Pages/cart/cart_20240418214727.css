@@ -1,3 +1,6 @@
+/* Cart.css */
+
+/* Base styles */
 .cart-container {
   display: flex;
   justify-content: space-between;
@@ -19,9 +22,7 @@
 .thumbnail-image {
   width: 180px;
   height: 260px;
-  margin-right: 20px; 
-  margin-left: 20px; 
-  margin-top: 40px;
+  margin-right: 20px; /* Adjust spacing */
 }
 
 .thumbnail-placeholder {
@@ -51,7 +52,6 @@
   padding: 5px 10px;
   margin-right: 20px; /* Adjust spacing */
   cursor: pointer;
-  border-radius: 20px;
 }
 
 .remove-button {
@@ -74,26 +74,26 @@
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 20px;
-  font-size: 18px; 
-  margin-top: 20px; 
+  font-size: 18px; /* Reduce font size */
+  margin-top: 20px; /* Add margin */
 }
 
-
+/* Empty cart styles */
 .empty-cart {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; 
+  height: 100vh; /* Full viewport height */
 }
 
 .empty-cart p {
-  font-size: 16px; 
-  margin-bottom: 10px; 
+  font-size: 16px; /* Reduce font size */
+  margin-bottom: 10px; /* Adjust spacing */
 }
 
 .empty-cart .empty-cart-icon {
-  font-size: 40px; 
+  font-size: 40px; /* Reduce font size */
   color: #999;
   margin-bottom: 10px; 
 }

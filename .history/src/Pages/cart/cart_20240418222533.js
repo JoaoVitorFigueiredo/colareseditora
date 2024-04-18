@@ -25,7 +25,8 @@ export const Cart = () =>{
                     <p>{(book.price*book.quantity).toFixed(2)}€</p>
                     <div className="quantity-buttons">
                         <button onClick={() => subtractBookUtil(cartContext,book)}>-</button>
-                        <span>{book.quantity}</span>
+                         <p>\n{book.quantity}
+                         </p>
                         <button onClick={() => addBookUtil(cartContext, book)}>+</button>
                         <button className="remove-button" onClick={() => removeBookUtil(cartContext,book)}>Remover</button>
                     </div>

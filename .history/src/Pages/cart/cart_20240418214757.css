@@ -1,3 +1,4 @@
+
 .cart-container {
   display: flex;
   justify-content: space-between;
@@ -19,9 +20,7 @@
 .thumbnail-image {
   width: 180px;
   height: 260px;
-  margin-right: 20px; 
-  margin-left: 20px; 
-  margin-top: 40px;
+  margin-right: 20px; /* Adjust spacing */
 }
 
 .thumbnail-placeholder {
@@ -51,7 +50,6 @@
   padding: 5px 10px;
   margin-right: 20px; /* Adjust spacing */
   cursor: pointer;
-  border-radius: 20px;
 }
 
 .remove-button {

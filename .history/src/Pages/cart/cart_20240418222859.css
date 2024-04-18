@@ -53,6 +53,10 @@
   cursor: pointer;
   border-radius: 20px;
 }
+.quantity-buttons button:last-child,
+.quantity-buttons p {
+    margin-right: 10px; /* Adiciona margem direita */
+}
 
 .remove-button {
   background-color: #dc3545;

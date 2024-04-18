@@ -107,11 +107,14 @@
       width: 100%;
       border-top: 1px solid #fff;
       position: absolute;
-      top: 80px;
-      left: -110%;
+      top: 80px; /* Altura da barra de navegação */
+      left: -110%; /* Esconde o menu completamente inicialmente */
       opacity: 1;
       transition: all 0.5s ease;
+      margin-top: 0; /* Remove o espaçamento branco entre a barra de navegação e o menu */
     }
+    
+    
   
     .nav-menu.active {
       background: #6699c6;
