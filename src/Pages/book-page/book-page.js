@@ -19,7 +19,7 @@ export function BookPage() {
 
     const fetchBooks = async () => {
         try {
-            const response = await fetch(`http://localhost:3030/books/?id=${id}`);
+            const response = await fetch(`http://localhost:3030/books/?id=${id}&_limit=1`);
             if (!response.ok) {
                 throw new Error('Resposta não sucedida do servidor');
             }
@@ -32,8 +32,14 @@ export function BookPage() {
         }
     };
 
-    function addCart(){
+    const [addedToCart, setAddedToCart] = useState(false)
+
+    async function addCart(){
         addCartUtil(cartContext, book)
+        setAddedToCart(true)
+        await new Promise(resolve => setTimeout(resolve,2000))
+        setAddedToCart(false)
+
     }
 
     if (loading) return <div>A procurar...</div>;
@@ -44,7 +50,11 @@ export function BookPage() {
     let button;
     if (book.price) {
         priceDisplay = `${book.price}€`;
-        button = <button onClick={addCart}>Adicionar ao carrinho!</button>;
+        if (addedToCart){
+
+        }else{
+            button = <button onClick={addCart}>Adicionar ao carrinho!</button>;
+        }
     } else {
         priceDisplay = "Preço sob consulta.";
     }
