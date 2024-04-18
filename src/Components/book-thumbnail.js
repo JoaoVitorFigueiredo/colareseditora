@@ -33,7 +33,7 @@ export function BookThumbnail({book}) {
                 <p className="book-price">{priceDisplay}</p>
 
                 <button className="buy-button">
-                    <i className="fa-solid fa-check"></i>
+                    Adicionado <i className="fa-solid fa-check"></i>
                 </button>
             </div>
         )
