@@ -7,14 +7,14 @@ function Footer() {
     function CallForAction() {
 
         if (location.pathname !== "/cart"){
-            return(
+            return (
                 <div className="cart-call-for-action">
-                    <h3>Deseja finalizar sua compra?</h3>
+                    <h3>Queres finalizar a tua compra?</h3>
                     <NavLink to="/cart">
-                    <button>Vá para o carrinho<i className="fas fa-shopping-cart"/></button>
+                        <button>Vai para o carrinho <i className="fas fa-shopping-cart"/></button>
                     </NavLink>
                 </div>
-            )
+            );
         }
     }
 

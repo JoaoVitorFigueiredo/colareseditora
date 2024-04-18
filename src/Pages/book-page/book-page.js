@@ -32,9 +32,7 @@ export function BookPage() {
         }
     };
 
-    const [addedToCart, setAddedToCart] = useState(false)
-
-    async function addCart(){
+    function addCart(){
         addCartUtil(cartContext, book)
         setAddedToCart(true)
         await new Promise(resolve => setTimeout(resolve,2000))
@@ -50,11 +48,7 @@ export function BookPage() {
     let button;
     if (book.price) {
         priceDisplay = `${book.price}€`;
-        if (addedToCart){
-
-        }else{
-            button = <button onClick={addCart}>Adicionar ao carrinho!</button>;
-        }
+        button = <button onClick={addCart}>Adicionar ao carrinho!</button>;
     } else {
         priceDisplay = "Preço sob consulta.";
     }
