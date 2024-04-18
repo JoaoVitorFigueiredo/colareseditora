@@ -144,7 +144,7 @@
       width: 2rem;
       height: 2rem;
       cursor: pointer;
-      color: #71a2c3;
+      color: #ffffff;
     }
   }
 
@@ -160,15 +160,6 @@
   font-size: 1rem;
   margin-right: 10px; /* Adiciona margem entre o input e o dropdown */
   flex-grow: 1; /* Faz o input ocupar o espaço restante */
-}
-
-.nav-search-icon {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  color: #666;
-  cursor: pointer;
 }
 
 #dropdown {

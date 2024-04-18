@@ -1,27 +1,25 @@
 .page {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 50px;
     margin-bottom: 100px;
 }
 
 .book-details {
     display: flex;
-    flex-direction: column;
-    align-items: center; /* FIX Versão PRECANDIDATE RELEASE: Adicionado para centralizar a imagem */
+    justify-content: space-between;
+    align-items: flex-start;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     border-radius: 8px; 
 }
 
 .book-details img {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
+    width: 200px;
+    height: 300px;
     border-radius: 8px;
-    margin-bottom: 20px;
-    object-fit: contain; /* FIX Versão PRECANDIDATE RELEASE: Adicionado para garantir que a imagem não distorça */
 }
+
 .book-info {
     flex: 1;
 }
@@ -29,7 +27,6 @@
 .authors {
     font-style: italic;
     color: #888;
-    margin-bottom: 10px;
 }
 
 .description {
@@ -37,29 +34,29 @@
 }
 
 .book-description {
+    margin-top: 20px;
     padding: 20px;
     background-color: #f0f0f0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
 }
 
 .book-actions {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
 }
 
 .book-actions p {
-    flex: 1;
-    margin: 0;
+    margin: 10px 0; 
     font-size: 16px; 
     color: #666; 
 }
 
 .book-actions button {
     padding: 15px 25px;
-    font-size: 16px;
+    font-size: 30px;
     background-color: #69acef; 
     color: white;
     border: none;
@@ -67,29 +64,9 @@
     cursor: pointer;
     outline: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    transition: background-color 0.3s ease;
 }
 
 .book-actions button:hover {
-    background-color: #2c3e50;
+    background-color: #2c3e50 !important;
 }
 
-@media screen and (max-width: 768px) {
-    .page {
-        padding: 10px;
-    }
-
-    .book-details {
-        padding: 15px;
-    }
-
-    .book-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .book-actions button {
-        width: 100%;
-        margin-top: 10px;
-    }
-}
