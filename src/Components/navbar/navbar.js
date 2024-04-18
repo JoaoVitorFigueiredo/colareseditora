@@ -75,9 +75,9 @@ function NavBar() {
                     <li className="nav-item" onClick={toggleMenu}>
                         <NavLink exact to="/cart" activeClassName="active" className="nav-links">
                             <i className="fas fa-shopping-cart"></i>
-                            {cart.volume > 0 && (
+                            {cart.volume > 0 && cart.volume <= 99 ? (
                                 <span className="cart-item-count">{cart.volume}</span>
-                            )}
+                            ) : cart.volume > 99 ? <span className="cart-item-count">99+</span> : null}
                         </NavLink>
                     </li>
                 </ul>
