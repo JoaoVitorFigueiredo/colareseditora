@@ -65,7 +65,7 @@ export function BookPage() {
     }
     let bookDescription;
     if (book.longDescription){
-        bookDescription = <p>{book.longDescreiption}</p>
+        bookDescription = <p>{book.longDescription}</p>
     }
     else {
         bookDescription = <p>A descrição para este livro está indisponível. Contacte-nos se desejar mais informações sobre a obra.</p>
