@@ -40,6 +40,7 @@ export function Search(){
     if (books.length > 0) {
         return (
             <div>
+                <h1 className="search-results">A exibir resultados para "{searchString}" em {searchOption === "authors" ? "autor" : searchOption === "title" ? "título" : "categoria"}</h1>
                 {books.map(book => <BookThumbnail book={book}/>)}
                 <PageNav currentPage={page} currentPath={location.pathname} currentParams={search}
                          pageNumber={pageNumber}/>

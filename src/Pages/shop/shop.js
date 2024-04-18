@@ -4,7 +4,7 @@ import {Filter} from "../../Components/filter/filter"
 import {PageNav} from "../../Components/pageNav/pageNav";
 import './shop.css';
 
-import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
+
 
 import {useLocation} from "react-router-dom"
 

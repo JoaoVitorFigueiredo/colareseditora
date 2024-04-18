@@ -26,7 +26,6 @@ export function BookThumbnail({book}) {
                 <Link to={`/book/${book.id}`}>
                     <div className="thumbnail-container">
                         <img className="thumbnail-image" src={book.thumbnailUrl || NoImage} alt={book.title}/>
-
                     </div>
                 </Link>
                 <p className="book-title">{book.title}</p>
