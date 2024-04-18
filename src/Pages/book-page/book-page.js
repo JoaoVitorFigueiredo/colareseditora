@@ -32,12 +32,13 @@ export function BookPage() {
         }
     };
 
-    function addCart(){
+    const [addedToCart, setAddedToCart] = useState(false)
+
+    async function addCart(){
         addCartUtil(cartContext, book)
         setAddedToCart(true)
         await new Promise(resolve => setTimeout(resolve,2000))
         setAddedToCart(false)
-
     }
 
     if (loading) return <div>A procurar...</div>;
@@ -45,12 +46,22 @@ export function BookPage() {
     if (!book) return <div>Nenhum livro encontrado.</div>;
 
     let priceDisplay;
+    let homedelivery;
+    let storepickup;
     let button;
     if (book.price) {
         priceDisplay = `${book.price}€`;
-        button = <button onClick={addCart}>Adicionar ao carrinho!</button>;
+        homedelivery = "Previsão de chegada em casa: 2 dias úteis.";
+        storepickup = "Entrega em loja disponível.";
+        if (addedToCart){
+            button = <button><strong>ADICIONADO AO CARRINHO</strong> <i className="fas fa-check"/></button>;
+        }else {
+            button = <button onClick={addCart}><strong>ADICIONAR AO CARRINHO</strong> <i className="fas fa-shopping-cart"/></button>;
+        }
     } else {
-        priceDisplay = "Preço sob consulta.";
+        priceDisplay = "Indisponível.";
+        homedelivery = "Não existe previsão de chegada para este livro.";
+        storepickup = "Entrega em loja indisponível.";
     }
     let bookDescription;
     if (book.longDescription){
@@ -66,8 +77,10 @@ export function BookPage() {
 
     return (
         <div className="page">
+
             <div className="book-details">
-            <img alt={book.title} src={book.thumbnailUrl}></img>
+
+                <img alt={book.title} src={book.thumbnailUrl}></img>
                 <div className="book-info">
                     <h2>{book.title}</h2>
                     <p className="authors">{book.authors.join(", ")}</p>
@@ -77,18 +90,23 @@ export function BookPage() {
                     <p><strong>Data de Publicação:</strong> {new Date(book.publishedDate.$date).toLocaleDateString()}</p>
                     <p><strong>Categorias:</strong> {book.categories.join(", ")}</p>
                 </div>
+                <div className="toggle-description" onClick={toggleDescription}>
+                    {descriptionExpanded ? <i className="fas fa-minus"></i> : <i className="fas fa-plus"></i>}
+                </div>
+                <div className="book-description" style={{ display: descriptionExpanded ? 'block' : 'none' }}>
+                    <h3>Está interessado? Explore mais sobre o livro!</h3>
+                    {bookDescription}
+                </div>
             </div>
-            <div className="book-description" style={{ display: descriptionExpanded ? 'block' : 'none' }}>
-                <h3>Está interessado? Explore mais sobre o livro!</h3>
-                {bookDescription}
-            </div>
-            <div className="toggle-description" onClick={toggleDescription}>
-                {descriptionExpanded ? <i className="fas fa-minus"></i> : <i className="fas fa-plus"></i>}
-            </div>
-            <div className="book-actions">
-                <p>Preço: {priceDisplay}</p>
+            <div class="additional-info">
+                <p><strong>{priceDisplay}</strong></p>
+                <div class="arrival-info">
+                    <p><i class="fa-solid fa-circle-check"></i> {homedelivery}</p>
+                    <p><i class="fa-solid fa-circle-check"></i> {storepickup}</p>
+                </div>
                 {button}
             </div>
+
         </div>
     );
 }
