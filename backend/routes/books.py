@@ -47,3 +47,20 @@ def get_book_by_id(id):
     
     else:
         abort(404)
+
+@app.route("/api/v1/books/featured", methods=["GET"])
+def get_featured_books():
+    # 5 livros com o maior score (decrescente, por isso -1), ordenados por preço (crescente, por isso 1)
+    featured_books = list(books_collection.find().sort([("score", -1), ("price", 1)]).limit(5))
+
+    for book in featured_books:
+        book["_id"] = str(book["_id"])  
+
+    return jsonify(featured_books)
+
+@app.route("/api/v1/books/total", methods=["GET"])
+def get_total_books():
+    # Número total de livros na coleção
+    total_books = books_collection.count_documents({})
+
+    return jsonify({"total_books": total_books})
