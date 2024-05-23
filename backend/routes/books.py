@@ -94,6 +94,19 @@ def get_books_by_author(author):
     
     return jsonify(books), 200
 
+@app.route("/api/v1/books/title/<title>", methods=["GET"])
+def get_books_by_title(title):
+    page = int(request.args.get("page", 1))
+    limit = int(request.args.get("limit", 10))
+    query = books_collection.find({"title": author})
+    
+    books = paginate(query, page, limit)
+    
+    for book in books:
+        book["_id"] = str(book["_id"])
+    
+    return jsonify(books), 200
+
 @app.route("/api/v1/books/year/<int:year>", methods=["GET"])
 def get_books_by_year(year):
     page = int(request.args.get("page", 1))
