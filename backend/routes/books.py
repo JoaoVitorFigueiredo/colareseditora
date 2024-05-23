@@ -99,8 +99,15 @@ def get_books_by_year(year):
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
 
-    # Pedir ajuda ao professor para corrigir o erro de pesquisa
-    query = books_collection.find({"publishedDate": {"$regex": f"^{year}-"}})
+    start_date = datetime(year, 1, 1)
+    end_date = datetime(year + 1, 1, 1)
+
+    query = books_collection.find({
+        "publishedDate": {
+            "$gte": start_date,
+            "$lt": end_date
+        }
+    })
     
     books = paginate(query, page, limit)
     
