@@ -56,12 +56,7 @@ def login():
 @app.route('/api/v1/user/confirmation', methods=['POST'])
 @token_required
 
-def confirm_user(current_user):
-    if not current_user:
-        return jsonify({'message': 'Unauthorized', 'status': 'Could not verify user'}), 401
-    
-    if not current_user.get('confirmed', False):
-        return jsonify({'message': 'Unauthorized', 'status': 'No permissions to perform that action'}), 401
+def confirm_user():
     
     data = request.get_json()
     username = data.get('username')
