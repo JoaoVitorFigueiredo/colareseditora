@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/venv
 /.pnp
 .pnp.js
 
@@ -23,5 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # 
-.venv
 .env
