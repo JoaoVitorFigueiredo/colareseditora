@@ -54,7 +54,7 @@ def login():
     return jsonify({'token': token})
 
 
-// Endpoint de Confirmação para adicionar novo Administrador
+# Endpoint de Confirmação para adicionar novo Administrador
 @app.route('/api/v1/user/confirmation', methods=['POST'])
 @token_required
 
