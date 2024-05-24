@@ -1,22 +1,24 @@
-from flask import jsonify, request, abort
+from flask import jsonify, request
 from app import app, books_collection , token_required
 from datetime import datetime
 
 def paginate(query, page, limit, sort_field=None, sort_order=1):
-    total_books = books_collection.count_documents(query) 
-    total_pages = (total_books + limit - 1) // limit  
+    total_queryBooks = books_collection.count_documents(query) 
+    total_pages = (total_queryBooks + limit - 1) // limit  
     
     results = books_collection.find(query).skip((page - 1) * limit).limit(limit)
+
     if sort_field:
         results = results.sort(sort_field, sort_order)
+
     books = list(results)
     
     pagination_info = {
         "pageCurrent": page,
         "pagePrevious": page - 1 if page > 1 else None,
-        "pageNext": page + 1 if page * limit < total_books else None,
+        "pageNext": page + 1 if page * limit < total_queryBooks else None,
         "pageLast": total_pages,
-        "items": total_books
+        "items": total_queryBooks
     }
     
     return books, pagination_info
