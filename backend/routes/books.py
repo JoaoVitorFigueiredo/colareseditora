@@ -2,6 +2,25 @@ from flask import jsonify, request, abort
 from app import app, books_collection , token_required
 from datetime import datetime
 
+def paginate(query, page, limit, sort_field=None, sort_order=1):
+    total_books = books_collection.count_documents(query) 
+    total_pages = (total_books + limit - 1) // limit  
+    
+    results = books_collection.find(query).skip((page - 1) * limit).limit(limit)
+    if sort_field:
+        results = results.sort(sort_field, sort_order)
+    books = list(results)
+    
+    pagination_info = {
+        "pageCurrent": page,
+        "pagePrevious": page - 1 if page > 1 else None,
+        "pageNext": page + 1 if page * limit < total_books else None,
+        "pageLast": total_pages,
+        "items": total_books
+    }
+    
+    return books, pagination_info
+
 @app.route("/api/v1/allbooks", methods=["GET"])
 def get_books():
     # Todos os livros da coleção
@@ -60,9 +79,6 @@ def delete_book_by_id(id):
 
     return jsonify({"message": "Success", "status": "Book deleted"}), 200
 
-def paginate(query, page, limit):
-    results = query.skip((page - 1) * limit).limit(limit)
-    return list(results)
 
 # Definição da rota para listar os livros com paginação
 @app.route("/api/v1/books", methods=["GET"])
@@ -71,41 +87,56 @@ def list_books():
     # Default page = 1 e limit = 10 (pesquisa sem parâmetros de consulta)
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
-    query = books_collection.find({})
+    query = {}
 
     # Livros com base no .skip (para pular) e .limit (para limitar) a quantidade de livros
-    books = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit)
 
     for book in books:
         book["_id"] = str(book["_id"])
 
-    return jsonify(books), 200
+    response = {
+        "books": books,
+        **pagination_info
+    }
+
+    return jsonify(response), 200
 
 @app.route("/api/v1/books/author/<author>", methods=["GET"])
 def get_books_by_author(author):
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
-    query = books_collection.find({"authors": author})
+    query = {"authors": author}
     
-    books = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit)
     
     for book in books:
         book["_id"] = str(book["_id"])
     
-    return jsonify(books), 200
+    response = {
+        "books": books,
+        **pagination_info
+    }
+
+    return jsonify(response), 200
 
 @app.route("/api/v1/books/title/<title>", methods=["GET"])
 def get_books_by_title(title):
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
-    query = books_collection.find({"title": author})
+    query = {"title": title}
     
-    books = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit)
     
     for book in books:
         book["_id"] = str(book["_id"])
     
-    return jsonify(books), 200
+    response = {
+        "books": books,
+        **pagination_info
+    }
+
+    return jsonify(response), 200
 
 @app.route("/api/v1/books/year/<int:year>", methods=["GET"])
 def get_books_by_year(year):
@@ -115,33 +146,43 @@ def get_books_by_year(year):
     start_date = datetime(year, 1, 1)
     end_date = datetime(year + 1, 1, 1)
 
-    query = books_collection.find({
+    query = {
         "publishedDate": {
             "$gte": start_date,
             "$lt": end_date
         }
-    })
+    }
     
-    books = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit)
     
     for book in books:
         book["_id"] = str(book["_id"])
     
-    return jsonify(books), 200
+    response = {
+        "books": books,
+        **pagination_info
+    }
+
+    return jsonify(response), 200
 
 @app.route("/api/v1/books/categories/<categories>", methods=["GET"])
 def get_books_by_category(categories):
 
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
-    query = books_collection.find({"categories": categories})
+    query = {"categories": categories}
     
-    books = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit)
     
     for book in books:
         book["_id"] = str(book["_id"])
     
-    return jsonify(books), 200
+    response = {
+        "books": books,
+        **pagination_info
+    }
+
+    return jsonify(response), 200
 
 @app.route("/api/v1/books/price", methods=["GET"])
 def get_books_by_price():
@@ -152,22 +193,23 @@ def get_books_by_price():
     # Significa o infinito positivo em float (sem limite superior)
     max_price = float(request.args.get("max_price", float("inf")))
 
-    order = request.args.get("order", "asc")
-
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
     
-    # Default order é ascendente (1)
-    # Descendente (-1) para o caso de ser passado "desc" ou outro valor
-    sort_order = 1 if order == "asc" else -1
+    sort_order = int(request.args.get("sort_order", 1))
 
-    query = books_collection.find({
+    query = {
         "price": {"$gte": min_price, "$lte": max_price}
-    }).sort("price", sort_order)
+    }
     
-    books = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit, sort_field="price", sort_order=sort_order)
     
     for book in books:
         book["_id"] = str(book["_id"])
     
-    return jsonify(books), 200
+    response = {
+        "books": books,
+        **pagination_info
+    }
+
+    return jsonify(response), 200
