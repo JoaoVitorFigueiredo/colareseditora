@@ -201,7 +201,12 @@ def get_books_by_price():
     sort_order = int(request.args.get("sort_order", 1))
 
     query = {
-        "price": {"$gte": min_price, "$lte": max_price}
+    "price": {
+        # "$gte" significa "maior ou igual a" min_price.
+        "$gte": min_price,
+        
+        # "$lte" significa "menor ou igual a" max_price.
+        "$lte": max_price}
     }
     
     books, pagination_info = paginate(query, page, limit, sort_field="price", sort_order=sort_order)
