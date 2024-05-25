@@ -69,6 +69,6 @@ def confirm_user():
     users_collection.update_one({'username': username}, {'$set': {'confirmed': True}})
 
     if user is not None and user["confirmed"] == True:
-        return jsonify({'code' : '409', 'status': 'Conflict', 'message': 'User already has permissions'}), 409 
+        return jsonify({'code' : '409', 'status': 'Conflict', 'message': 'User already has administrator permissions'}), 409 
     
     return jsonify({'code' : '200', 'status': 'Success', 'message': 'User confirmed successfully'}), 200
