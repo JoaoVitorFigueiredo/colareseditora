@@ -4,6 +4,8 @@ import {BookThumbnail} from "../../Components/book-thumbnail";
 import {PageNav} from "../../Components/pageNav/pageNav";
 import "./search.css";
 
+import endpoint from "../../assets/endpoint.json"
+
 export function Search(){
     const  location  = useLocation()
     const { search } = location
@@ -24,15 +26,10 @@ export function Search(){
 
     const fetchBooks = async () => {
         try {
-            const responseTotal = await fetch(`http://localhost:3030/books?title_like=${searchString}`,{method:"GET"})
-            const allBooks = await responseTotal.json();
-            const totalBooks = allBooks.length
-            setPageNumber(Math.ceil(totalBooks / 10))
-
-
-            const response = await fetch(`http://localhost:3030/books?${searchOption}_like=${searchString}&_per_page=10&_page=${page}`,{method:"GET"})
-            const bookData = await response.json();
-            setBook(bookData)
+            const response = await fetch(`${endpoint.url}books/${searchOption}/${searchString}?limit=10&page=${page}`,{method:"GET"})
+            const responseJson = await response.json()
+            setBook(responseJson.books)
+            setPageNumber(responseJson.pageLast)
         }
         catch (error){
             console.error(`Error fetching data: ${error}`) // Era engraçado fazer isso daqui enviar pra uma página de erro.

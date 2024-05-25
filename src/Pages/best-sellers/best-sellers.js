@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {BookThumbnail} from "../../Components/book-thumbnail";
 import './best-sellers.css';
 
+import endpoint from "../../assets/endpoint.json"
 
 export function BestSellers(){
     const [books, setBooks] = useState([])
@@ -11,7 +12,7 @@ export function BestSellers(){
     },[])
     const fetchBooks = async () => {
         try {
-            const response = await fetch('http://localhost:3030/books/?_sort=-score&_limit=5',{method:"GET"})
+            const response = await fetch(`${endpoint.url}books/featured`,{method:"GET"})
             const booksData = await response.json();
             setBooks(booksData)
         }
