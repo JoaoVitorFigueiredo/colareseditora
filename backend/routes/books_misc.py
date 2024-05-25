@@ -15,10 +15,10 @@ def delete_book_by_id(id):
     return jsonify({"message": "Success", "status": "Book deleted"}), 200
 
 @app.route("/api/v1/books", methods=["POST"])
-@token_required
+#@token_required
 def add_new_books():
     books_data = request.get_json()
-    print(books_data)
+
     if not isinstance(books_data, list):
         return jsonify({"message": "A list of books is required"}), 400
 
@@ -39,5 +39,24 @@ def add_new_books():
     books_collection.insert_many(books_data)
     return jsonify({'message': 'Success', 'status': 'Books added successfully'}), 200
 
+
+@app.route("/api/v1/books/<int:id>", methods=["PUT"])
+#@token_required
+def update_book(id):
+    book_data = request.get_json()
+
+    if "id" in book_data:
+        return jsonify({"message": "Changing the id of the book is not allowed",
+                        "invalid book": book_data}), 400
+
+    if "_id" in book_data:
+        return jsonify({"message": "field '_id' is reserved",
+                        "invalid book": book_data}), 400
+
+    book_data["id"] = id
+
+    books_collection.update_one({"id": id},
+                                {"$set": book_data})
+    return jsonify({'message': 'Success', 'status': 'Book updated successfully'}), 200
 
 
