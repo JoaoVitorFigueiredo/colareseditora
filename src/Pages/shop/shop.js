@@ -4,6 +4,7 @@ import {Filter} from "../../Components/filter/filter"
 import {PageNav} from "../../Components/pageNav/pageNav";
 import './shop.css';
 
+import endpoint from "../../assets/endpoint.json"
 
 
 import {useLocation} from "react-router-dom"
@@ -32,14 +33,7 @@ export function Shop(){
 
     const fetchBooks = async ()=> {
         try {
-            const responseTotal = await fetch(`http://localhost:3030/books?${filterOption}_like=${filterString}`, { method: "GET" });
-            const allBooks = await responseTotal.json();
-            const totalBooks = allBooks.length;
-            const totalPages = Math.ceil(totalBooks / 10);
-
-            setPageNumber(totalPages);
-
-            const response = await fetch(`http://localhost:3030/books?price_ne=&${filterOption}_like=${filterString}&_sort=${selectedOption}&_order=${selectedOrder}&_per_page=10&_page=${page}`,{method:"GET"})
+            const response = await fetch(`${endpoint.url}books/${filterOption}/${filterString}?sortby=${selectedOption}&order=${selectedOrder}&limit=10&page=${page}`,{method:"GET"})
             const booksData = await response.json();
             setBooks(booksData)
 

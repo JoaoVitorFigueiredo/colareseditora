@@ -5,6 +5,8 @@ import "./book-page.css";
 import {addCartUtil} from "../../Utils/CartUtils"
 import NoImage from '../../assets/book-noimage.png';
 
+import endpoint from "../../assets/endpoint.json"
+
 export function BookPage() {
     const { id } = useParams();
     const [book, setBook] = useState(null);
@@ -20,7 +22,7 @@ export function BookPage() {
 
     const fetchBooks = async () => {
         try {
-            const response = await fetch(`http://localhost:3030/books/?id=${id}&_limit=1`);
+            const response = await fetch(`${endpoint.url}books/${id}`);
             if (!response.ok) {
                 throw new Error('Resposta não sucedida do servidor');
             }

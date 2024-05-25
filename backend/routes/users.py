@@ -26,7 +26,6 @@ def signup():
     return jsonify({'message': 'Created', 'status': 'User created successfully'}), 201
 
 @app.route('/api/v1/user/login', methods=['POST'])
-
 def login():
     data = request.get_json()
     username = data.get('username')
@@ -57,7 +56,6 @@ def login():
 # Endpoint de Confirmação para adicionar novo Administrador
 @app.route('/api/v1/user/confirmation', methods=['POST'])
 @token_required
-
 def confirm_user():
     
     data = request.get_json()
