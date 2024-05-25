@@ -7,8 +7,8 @@ export function Filter(){
 
     const navigate = useNavigate()
 
-    const [selectedOption, setOrderOption] = useState("score&order=desc");
-    const [filterOption, setFilterOption] = useState("authors")
+    const [selectedOption, setOrderOption] = useState("score&order=-1");
+    const [filterOption, setFilterOption] = useState("author")
     const [filterString, setFilterString] = useState("")
 
 
@@ -34,10 +34,10 @@ export function Filter(){
             value={selectedOption}
             onChange={updateSort}
           >
-            <option value="score&order=desc">Classificação ↓</option>
-            <option value="score&order=asc">Classificação ↑</option>
-            <option value="price&order=asc">Preço ↑</option>
-            <option value="price&order=desc">Preço ↓</option>
+            <option value="score&order=-1">Classificação ↓</option>
+            <option value="score&order=1">Classificação ↑</option>
+            <option value="price&order=1">Preço ↑</option>
+            <option value="price&order=-1">Preço ↓</option>
           </select>
           <input
             className="filter-input"
@@ -49,7 +49,7 @@ export function Filter(){
             value={filterOption}
             onChange={updateFilterOption}
           >
-            <option value="authors">Autor</option>
+            <option value="author">Autor</option>
             <option value="categories">Categoria</option>
             <option value="title">Título</option>
           </select>

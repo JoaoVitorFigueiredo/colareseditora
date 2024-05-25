@@ -78,8 +78,10 @@ def save_cart():
         return jsonify({"message": "The books in the cart must be in a list"}), 400
 
     for book in cart_data["books"]:
-        if not books_collection.find_one({"id": book}):
-            return jsonify({"message": f"The book ({book}), don't exists."}), 400
+        if not "id" in book:
+            return jsonify({"message": "Couldn't find the book's id"}), 400
+        if not books_collection.find_one({"id": book["ID"]}):
+            return jsonify({"message": f"The book ({book['ID']}), don't exists."}), 400
 
     cart_collection.insert_one(cart_data)
     return jsonify({'message': 'Success', 'status': 'Cart saved'}), 200

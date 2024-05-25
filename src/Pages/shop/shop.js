@@ -33,9 +33,14 @@ export function Shop(){
 
     const fetchBooks = async ()=> {
         try {
-            const response = await fetch(`${endpoint.url}books/${filterOption}/${filterString}?sortby=${selectedOption}&order=${selectedOrder}&limit=10&page=${page}`,{method:"GET"})
+            let query = `${endpoint.url}books/${filterOption}/${filterString}?sort_field=${selectedOption}&sort_order=${selectedOrder}&limit=10&page=${page}`
+            if (!filterString){
+                query =`${endpoint.url}books?sort_field=${selectedOption}&sort_order=${selectedOrder}&limit=10&page=${page}`
+            }
+            console.log(query)
+            const response = await fetch(query,{method:"GET"})
             const booksData = await response.json();
-            setBooks(booksData)
+            setBooks(booksData.books)
 
         } catch (error) {
             console.error(`Error fetching data: ${error}`) // Era engraçado fazer isso daqui enviar pra uma página de erro.
