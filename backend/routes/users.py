@@ -6,15 +6,14 @@ from app import app, users_collection, token_required
 @app.route('/api/v1/user/signup', methods=['POST'])
 
 def signup():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
+    username = request.form.get("username")
+    password = request.form.get("password")
     
     if not username or not password:
-        return jsonify({'message': 'Bad Request', 'status': 'Username and password are required'}), 400
+        return jsonify({'code' : '400', 'status': 'Bad Request', 'message': 'Username and password form is required'}), 400
 
     if users_collection.find_one({'username': username}):
-        return jsonify({'message': 'User already exists'}), 400
+        return jsonify({'code' : '409', 'status': 'Conflict', 'message': 'User already exists'}), 409
 
     user = {
         'username': username,
@@ -23,35 +22,34 @@ def signup():
     }
 
     users_collection.insert_one(user)
-    return jsonify({'message': 'Created', 'status': 'User created successfully'}), 201
+    return jsonify({'code' : '201', 'status': 'Created', 'message': 'User created successfully'}), 201
 
 @app.route('/api/v1/user/login', methods=['POST'])
 
 def login():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
+    username = request.form.get("username")
+    password = request.form.get("password")
     
     if not username or not password:
-        return jsonify({'message': 'Bad Request', 'status': 'Username and password are required'}), 400
+        return jsonify({'code' : '400', 'status': 'Bad Request', 'message': 'Username and password form is required'}), 400
     
     user = users_collection.find_one({'username': username})
     
     if not user:
-        return jsonify({'message': 'Not Found', 'status': 'User not registered'}), 404
+        return jsonify({'code' : '404', 'status': 'Not Found', 'message': 'User not registered'}), 404
     
     if user['password'] != password:  
-        return jsonify({'message': 'Unauthorized', 'status': 'Incorrect password'}), 401
+        return jsonify({'code' : '401', 'status': 'Unauthorized', 'message': 'Incorrect user password'}), 401
     
     if not user['confirmed']:
-        return jsonify({'message': 'Forbidden', 'status': 'User not confirmed'}), 403
+        return jsonify({'code' : '403', 'status': 'Forbidden', 'message': 'User not confirmed'}), 403
     
     token = jwt.encode({
         'username': user['username'],
         'exp': datetime.datetime.now(datetime.UTC) + datetime.timedelta(hours=1)
     }, current_app.config['SECRET_KEY'], algorithm='HS256')
     
-    return jsonify({'token': token})
+    return jsonify({'code' : '200', 'status': 'Success', 'message': 'User logged in successfully', 'token': token})
 
 
 # Endpoint de Confirmação para adicionar novo Administrador
@@ -60,16 +58,19 @@ def login():
 
 def confirm_user():
     
-    data = request.get_json()
-    username = data.get('username')
+    username = request.form.get("username")
     
     if not username:
-        return jsonify({'message': 'Bad Request', 'status': 'Username is required'}), 400
+        return jsonify({'code' : '400', 'status': 'Bad Request', 'message': 'Username form is required'}), 400
     
     user = users_collection.find_one({'username': username})
     
     if not user:
-        return jsonify({'message': 'Not Found', 'status': 'User not registered'}), 404
+        return jsonify({'code' : '404', 'status': 'Not Found', 'message': 'User not registered'}), 404
     
     users_collection.update_one({'username': username}, {'$set': {'confirmed': True}})
-    return jsonify({'message': 'Success', 'status': 'User confirmed successfully'}), 200
+
+    if user is not None and user["confirmed"] == True:
+        return jsonify({'code' : '409', 'status': 'Conflict', 'message': 'User already has permissions'}), 409 
+    
+    return jsonify({'code' : '200', 'status': 'Success', 'message': 'User confirmed successfully'}), 200

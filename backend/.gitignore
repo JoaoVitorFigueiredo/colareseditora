@@ -4,9 +4,12 @@
 /node_modules
 /venv
 venv/
-/__pychache__
 /.pnp
 .pnp.js
+
+# Ignore __pycache__ directories
+__pycache__/
+/__pychache__
 
 # testing
 /coverage
