@@ -26,6 +26,7 @@ export function Search(){
 
     const fetchBooks = async () => {
         try {
+            console.log(`${endpoint.url}books/${searchOption}/${searchString}?limit=10&page=${page}`)
             const response = await fetch(`${endpoint.url}books/${searchOption}/${searchString}?limit=10&page=${page}`,{method:"GET"})
             const responseJson = await response.json()
             setBook(responseJson.books)
@@ -38,7 +39,7 @@ export function Search(){
     if (books.length > 0) {
         return (
             <div>
-                <h1 className="search-results">A exibir resultados para "{searchString}" em {searchOption === "authors" ? "autor" : searchOption === "title" ? "título" : "categoria"}</h1>
+                <h1 className="search-results">A exibir resultados para "{searchString}" em {searchOption === "author" ? "autor" : searchOption === "title" ? "título" : "categoria"}</h1>
                 {books.map(book => <BookThumbnail book={book}/>)}
                 <PageNav currentPage={page} currentPath={location.pathname} currentParams={search}
                          pageNumber={pageNumber}/>
@@ -47,7 +48,7 @@ export function Search(){
     }else{
         return(
             <div class="search-result">
-                <p>Nenhum resultado encontrado para <strong>{searchString}</strong> em <strong>{searchOption === "authors" ? "autor" : searchOption === "title" ? "título" : "categoria"}</strong>.</p>
+                <p>Nenhum resultado encontrado para <strong>{searchString}</strong> em <strong>{searchOption === "author" ? "autor" : searchOption === "title" ? "título" : "categoria"}</strong>.</p>
                 <p>Verifica os parâmetros da tua pesquisa ou visita a loja para ter acesso a todos os nossos títulos.</p>
             </div>
         )

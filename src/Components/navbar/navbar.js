@@ -51,8 +51,8 @@ function NavBar() {
                     />
                     <select id="dropdown" value={searchOption} onChange={updateSearchOption}>
                         <option value="title">Título</option>
-                        <option value="authors">Autor</option>
-                        <option value="categories">Categoria</option>
+                        <option value="author">Autor</option>
+                        <option value="categorie">Categoria</option>
                     </select>
                 </div>
 
@@ -67,7 +67,7 @@ function NavBar() {
                         </NavLink>
                     </li>
                     <li className="nav-item" onClick={toggleMenu}>
-                        <NavLink exact to="/shop?selectedOption=-score&filterOption=authors&filterString=&page=1"
+                        <NavLink exact to="/shop?selectedOption=-score&filterOption=author&filterString=&page=1"
                               activeClassName="active" className="nav-links">
                             Loja
                         </NavLink>

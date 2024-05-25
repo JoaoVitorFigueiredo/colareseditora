@@ -106,7 +106,7 @@ def get_books_by_author(author):
     sort_order = int(request.args.get("sort_order", 1))
     sort_field = str(request.args.get("sort_field", "id"))
 
-    query = {"authors": author}
+    query = {"author": {"$regex": re.compile(author, re.IGNORECASE)}}
     
     books, pagination_info = paginate(query, page, limit, sort_field, sort_order)
     
@@ -183,7 +183,7 @@ def get_books_by_category(categories):
     sort_order = int(request.args.get("sort_order", 1))
     sort_field = str(request.args.get("sort_field", "id"))
 
-    query = {"categories": categories}
+    query = {"categories": {"$regex": re.compile(categories, re.IGNORECASE)}}
     
     books, pagination_info = paginate(query, page, limit, sort_field, sort_order)
     

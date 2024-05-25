@@ -27,7 +27,7 @@ export function BookPage() {
                 throw new Error('Resposta não sucedida do servidor');
             }
             const bookData = await response.json();
-            setBook(bookData[0]);
+            setBook(bookData);
             setLoading(false);
         } catch (error) {
             setError(error.message);

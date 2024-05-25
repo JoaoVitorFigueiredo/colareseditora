@@ -4,7 +4,6 @@ import datetime
 from app import app, users_collection, token_required
 
 @app.route('/api/v1/user/signup', methods=['POST'])
-
 def signup():
     username = request.form.get("username")
     password = request.form.get("password")
@@ -48,7 +47,7 @@ def login():
         'exp': datetime.datetime.now(datetime.UTC) + datetime.timedelta(hours=1)
     }, current_app.config['SECRET_KEY'], algorithm='HS256')
     
-    return jsonify({'code' : '200', 'status': 'Success', 'message': 'User logged in successfully', 'token': token})
+    return jsonify({'code': '200', 'status': 'Success', 'message': 'User logged in successfully', 'token': token})
 
 
 # Endpoint de Confirmação para adicionar novo Administrador
