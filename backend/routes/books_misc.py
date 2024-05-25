@@ -1,12 +1,12 @@
 from flask import jsonify, request
-from app import app, books_collection , token_required
+from app import app, books_collection, cart_collection, token_required
+
 
 # Rota para apagar um livro pelo ID respetivo
 # Necessário autenticação @token_required
 @app.route("/api/v1/books/<int:id>", methods=["DELETE"])
-#@token_required
+@token_required
 def delete_book_by_id(id):
-
     result = books_collection.delete_one({"id": id})
 
     if result.deleted_count == 0:
@@ -14,8 +14,9 @@ def delete_book_by_id(id):
 
     return jsonify({"code": "200", "status": "Success", "message": "Book deleted successfully"}), 200
 
+
 @app.route("/api/v1/books", methods=["POST"])
-#@token_required
+@token_required
 def add_new_books():
     books_data = request.get_json()
 
@@ -41,7 +42,7 @@ def add_new_books():
 
 
 @app.route("/api/v1/books/<int:id>", methods=["PUT"])
-#@token_required
+@token_required
 def update_book(id):
     book_data = request.get_json()
 
@@ -60,3 +61,25 @@ def update_book(id):
     return jsonify({'message': 'Success', 'status': 'Book updated successfully'}), 200
 
 
+@app.route("/api/v1/books/cart", methods=["POST"])
+def save_cart():
+    cart_data = request.get_json()
+
+    if "total" not in cart_data or "volume" not in cart_data or "books" not in cart_data:
+        return jsonify({"message": "The shopping cart must contain 'total' , 'volume' and 'total'"}), 400
+
+    if not (isinstance(cart_data["total"], float) or isinstance(cart_data["total"], int)):
+        return jsonify({"message": "The total value must be numeric' , 'volume' and 'total'"}), 400
+
+    if not isinstance(cart_data["volume"], int):
+        return jsonify({"message": "The number of numbers (volume) must be an integer' , 'volume' and 'total'"}), 400
+
+    if not isinstance(cart_data["books"], list):
+        return jsonify({"message": "The books in the cart must be in a list"}), 400
+
+    for book in cart_data["books"]:
+        if not books_collection.find_one({"id": book}):
+            return jsonify({"message": f"The book ({book}), don't exists."}), 400
+
+    cart_collection.insert_one(cart_data)
+    return jsonify({'message': 'Success', 'status': 'Cart saved'}), 200

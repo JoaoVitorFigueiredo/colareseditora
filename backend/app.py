@@ -21,6 +21,7 @@ client = MongoClient(
 db = client["library_db"]
 books_collection = db["books"]
 users_collection = db["users"]
+cart_collection = db["cart"]
 
 def token_required(f):
     @wraps(f)
