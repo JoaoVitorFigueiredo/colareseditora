@@ -1,1 +1,7 @@
-Please check our wiki and guide at our website https://colares.chung-jf.me or check our source project at [Colares Editora Docs](https://github.com/Rodaviva29/colareseditora-docs).
+Please check our wiki and guide at our website to install our project.
+
+[**Live Website →**](https://colares.chung-jf.me)
+
+[**Alternative Website →**](https://colareseditora-docs.vercel.app)
+
+[Colares Editora Docs Code Repository](https://github.com/Rodaviva29/colareseditora-docs).
