@@ -10,9 +10,9 @@ def delete_book_by_id(id):
     result = books_collection.delete_one({"id": id})
 
     if result.deleted_count == 0:
-        return jsonify({"message": "Error", "status": "Book not found"}), 404
+        return jsonify({"code": "404", "status": "Not Found", "message": "Book ID not found"}), 404
 
-    return jsonify({"message": "Success", "status": "Book deleted"}), 200
+    return jsonify({"code": "200", "status": "Success", "message": "Book deleted successfully"}), 200
 
 @app.route("/api/v1/books", methods=["POST"])
 #@token_required
