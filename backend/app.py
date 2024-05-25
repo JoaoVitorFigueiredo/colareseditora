@@ -43,7 +43,4 @@ def token_required(f):
         return f(current_user, *args, **kwargs)
     return decorated
 
-from routes import books, users
-
-
-
+from routes import books_misc, books_get, users

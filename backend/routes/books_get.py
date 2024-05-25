@@ -1,6 +1,9 @@
 from flask import jsonify, request
-from app import app, books_collection , token_required
+from app import app, books_collection 
 from datetime import datetime
+
+# Regex Module
+import re
 
 def paginate(query, page, limit, sort_field=None, sort_order=1):
     total_queryBooks = books_collection.count_documents(query) 
@@ -23,7 +26,7 @@ def paginate(query, page, limit, sort_field=None, sort_order=1):
     
     return books, pagination_info
 
-@app.route("/api/v1/allbooks", methods=["GET"])
+@app.route("/api/v1/books/allbooks", methods=["GET"])
 def get_books():
     # Todos os livros da coleção
     books = list(books_collection.find({}))
@@ -36,7 +39,7 @@ def get_books():
     return jsonify(books), 200  # Lista de livros como resposta JSON
 
 # Definição da rota para procurar os livros pelo ID (inteiro)
-@app.route("/api/v1/books/<string:id>", methods=["GET"])
+@app.route("/api/v1/books/<int:id>", methods=["GET"])
 def get_book_by_id(id):
     # Procurar o livro pelo campo 'id'
     book = books_collection.find_one({"id": id})
@@ -53,7 +56,8 @@ def get_book_by_id(id):
 @app.route("/api/v1/books/featured", methods=["GET"])
 def get_featured_books():
     # 5 livros com o maior score (decrescente, por isso -1), ordenados por preço (crescente, por isso 1)
-    featured_books = list(books_collection.find().sort([("score", -1), ("price", 1)]).limit(5))
+    # Garantir que o preço mínimo é maior ou igual a 0 para apenas mostrar livros com preço/disponíveis
+    featured_books = list(books_collection.find({"price": {"$gte": 0}}).sort([("score", -1), ("price", 1)]).limit(5))
 
     for book in featured_books:
         book["_id"] = str(book["_id"])
@@ -68,19 +72,6 @@ def get_total_books():
 
     return jsonify({"total_books": total_books}), 200
 
-# Rota para apagar um livro pelo ID respetivo
-# Necessário autenticação @token_required
-@app.route("/api/v1/books/<string:id>", methods=["DELETE"])
-@token_required
-def delete_book_by_id(id):
-
-    result = books_collection.delete_one({"id": id})
-
-    if result.deleted_count == 0:
-        return jsonify({"message": "Error", "status": "Book not found"}), 404
-
-    return jsonify({"message": "Success", "status": "Book deleted"}), 200
-
 
 # Definição da rota para listar os livros com paginação
 @app.route("/api/v1/books", methods=["GET"])
@@ -89,10 +80,13 @@ def list_books():
     # Default page = 1 e limit = 10 (pesquisa sem parâmetros de consulta)
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
+
+    sort_order = int(request.args.get("sort_order", 1))
+    sort_field = str(request.args.get("sort_field", "id"))
+
     query = {}
 
-    # Livros com base no .skip (para pular) e .limit (para limitar) a quantidade de livros
-    books, pagination_info = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit, sort_field, sort_order)
 
     for book in books:
         book["_id"] = str(book["_id"])
@@ -108,9 +102,13 @@ def list_books():
 def get_books_by_author(author):
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
+
+    sort_order = int(request.args.get("sort_order", 1))
+    sort_field = str(request.args.get("sort_field", "id"))
+
     query = {"authors": author}
     
-    books, pagination_info = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit, sort_field, sort_order)
     
     for book in books:
         book["_id"] = str(book["_id"])
@@ -126,9 +124,15 @@ def get_books_by_author(author):
 def get_books_by_title(title):
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
-    query = {"title": title}
+
+    sort_order = int(request.args.get("sort_order", 1))
+    sort_field = str(request.args.get("sort_field", "id"))
+
+    # Consulta regex do MongoDB para corresponder a títulos de livros que contenham a substring fornecida
+    # https://pt.stackoverflow.com/questions/486258/por-que-utilizar-uma-expressão-regular-compilada-re-compile-em-python
+    query = {"title": {"$regex": re.compile(title, re.IGNORECASE)}}
     
-    books, pagination_info = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit, sort_field, sort_order)
     
     for book in books:
         book["_id"] = str(book["_id"])
@@ -145,6 +149,9 @@ def get_books_by_year(year):
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
 
+    sort_order = int(request.args.get("sort_order", 1))
+    sort_field = str(request.args.get("sort_field", "id"))
+
     start_date = datetime(year, 1, 1)
     end_date = datetime(year + 1, 1, 1)
 
@@ -155,7 +162,7 @@ def get_books_by_year(year):
         }
     }
     
-    books, pagination_info = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit, sort_field, sort_order)
     
     for book in books:
         book["_id"] = str(book["_id"])
@@ -172,9 +179,13 @@ def get_books_by_category(categories):
 
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
+
+    sort_order = int(request.args.get("sort_order", 1))
+    sort_field = str(request.args.get("sort_field", "id"))
+
     query = {"categories": categories}
     
-    books, pagination_info = paginate(query, page, limit)
+    books, pagination_info = paginate(query, page, limit, sort_field, sort_order)
     
     for book in books:
         book["_id"] = str(book["_id"])
@@ -197,6 +208,8 @@ def get_books_by_price():
 
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 10))
+
+    sort_field = str(request.args.get("sort_field", "price"))
     
     sort_order = int(request.args.get("sort_order", 1))
 
@@ -209,7 +222,7 @@ def get_books_by_price():
         "$lte": max_price}
     }
     
-    books, pagination_info = paginate(query, page, limit, sort_field="price", sort_order=sort_order)
+    books, pagination_info = paginate(query, page, limit, sort_field, sort_order)
     
     for book in books:
         book["_id"] = str(book["_id"])
