@@ -41,7 +41,7 @@ export function Shop(){
             const response = await fetch(query,{method:"GET"})
             const booksData = await response.json();
             setBooks(booksData.books)
-
+            setPageNumber(booksData.pageLast)
         } catch (error) {
             console.error(`Error fetching data: ${error}`) // Era engraçado fazer isso daqui enviar pra uma página de erro.
         }
