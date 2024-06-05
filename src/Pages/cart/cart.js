@@ -4,8 +4,27 @@ import {Link} from "react-router-dom";
 import NoImage from "../../assets/book-noimage.png";
 import {addBookUtil, removeBookUtil, subtractBookUtil, clearCartUtil} from "../../Utils/CartUtils";
 import "./cart.css";
+import axios from "axios";
+import endpoint from "../../assets/endpoint.json"
 
 export const Cart = () =>{
+    const cartContext = useContext(CartContext)
+    const {cart} = cartContext
+    function uploadCart(){
+        console.log(cart)
+        axios.post(`${endpoint.url}books/cart`,
+            cart
+        )
+            .then((response) => {
+                console.log(response.data);
+                clearCartUtil(cartContext)
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+
     function BookInCart({book}){
 
         return (
@@ -19,7 +38,7 @@ export const Cart = () =>{
                         <Link to={`/book/${book.id}`}><img className="thumbnail-image" src={NoImage} alt={book.title} /></Link>
                     </div>
                 )}
-    
+
                 <div className="book-details">
                     <p className="book-title">{book.title}</p>
                     <p>{(book.price*book.quantity).toFixed(2)}€</p>
@@ -33,8 +52,7 @@ export const Cart = () =>{
             </div>
         );
     }
-    const cartContext = useContext(CartContext)
-    const {cart} = cartContext
+
 
     if (cart.volume > 0) {
         return (
@@ -45,7 +63,7 @@ export const Cart = () =>{
                 <div className="cart-summary">
                     <p><strong>Total: {cart.total.toFixed(2)}€</strong></p>
                     <p>Quantidade de itens: {cart.volume}</p>
-                    <button className="checkout-button">Checkout</button>
+                    <button className="checkout-button" onClick={uploadCart}>Checkout</button>
                     <div><button className="clear-cart-button" onClick={() => clearCartUtil(cartContext)}>Apagar tudo <i class="fa-solid fa-trash-xmark"></i></button></div>
                 </div>
             </div>
@@ -59,4 +77,4 @@ export const Cart = () =>{
             </div>
         );
     }
-};
+}

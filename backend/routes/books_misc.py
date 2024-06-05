@@ -77,11 +77,18 @@ def update_book(id):
 def save_cart():
     cart_data = request.get_json()
 
-    if "total" not in cart_data or "volume" not in cart_data or "books" not in cart_data:
+    if "total" not in cart_data:
         return jsonify({"code": "400",
                         "status": "Bad Request",
-                        "message": "The shopping cart must contain 'total , 'volume' and 'total'"}), 400
-
+                        "message": "The shopping cart must contain 'total'"}), 400
+    if "volume" not in cart_data :
+        return jsonify({"code": "400",
+                        "status": "Bad Request",
+                        "message": "The shopping cart must contain 'volume'"}), 400
+    if "books" not in cart_data:
+        return jsonify({"code": "400",
+                        "status": "Bad Request",
+                        "message": "The shopping cart must contain 'books'"}), 400
     if not (isinstance(cart_data["total"], float) or isinstance(cart_data["total"], int)):
         return jsonify({"code": "400",
                         "status": "Bad Request",
@@ -102,7 +109,7 @@ def save_cart():
             return jsonify({"code": "400",
                         "status": "Bad Request",
                         "message": "Couldn't find the book's id"}), 400
-        if not books_collection.find_one({"id": book["ID"]}):
+        if not books_collection.find_one({"id": book["id"]}):
             return jsonify({"code": "400",
                         "status": "Bad Request",
                         "message": f"The book with the id {book['ID']}, don't exists."}), 400
