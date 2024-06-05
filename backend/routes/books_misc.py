@@ -128,11 +128,3 @@ def save_cart():
     cart_collection.insert_one(cart_data)
     return jsonify({'message': 'Success', 'status': 'Cart saved'}), 200
 
-
-#retirar antes de enviar
-@app.route("/api/v1/books/cart", methods=["GET"])
-def show_all_carts():
-    result = list(cart_collection.find({}))
-    for item in result:
-        item['_id'] = str(item['_id'])
-    return jsonify(result), 200
