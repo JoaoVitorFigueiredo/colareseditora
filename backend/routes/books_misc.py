@@ -104,16 +104,35 @@ def save_cart():
                         "status": "Bad Request",
                         "message": "The books in the cart must be in a list"}), 400
 
+    stored_books = []
     for book in cart_data["books"]:
         if not "id" in book:
             return jsonify({"code": "400",
                         "status": "Bad Request",
-                        "message": "Couldn't find the book's id"}), 400
+                        "message": f"Couldn't find the book's id in: {book}"}), 400
+        if not "quantity" in book:
+            return jsonify({"code": "400",
+                            "status": "Bad Request",
+                            "message": f"Couldn't find the book's quantity in: {book}"}), 400
         if not books_collection.find_one({"id": book["id"]}):
             return jsonify({"code": "400",
                         "status": "Bad Request",
                         "message": f"The book with the id {book['ID']}, don't exists."}), 400
 
+        stored_books.append({"id":book["id"],
+                             "quantity": book["quantity"]})
+
+    for stored_book in stored_books:
+        books_collection.update_one({"id": stored_book["id"]},
+                                {"$inc": {"amount_sold":stored_book["quantity"]}})
     cart_collection.insert_one(cart_data)
     return jsonify({'message': 'Success', 'status': 'Cart saved'}), 200
 
+
+#retirar antes de enviar
+@app.route("/api/v1/books/cart", methods=["GET"])
+def show_all_carts():
+    result = list(cart_collection.find({}))
+    for item in result:
+        item['_id'] = str(item['_id'])
+    return jsonify(result), 200

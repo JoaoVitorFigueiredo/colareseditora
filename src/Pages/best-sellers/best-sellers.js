@@ -5,16 +5,21 @@ import './best-sellers.css';
 import endpoint from "../../assets/endpoint.json"
 
 export function BestSellers(){
-    const [books, setBooks] = useState([])
+    const [featuredBooks, setFeaturedBooks] = useState([])
+    const [bestSellerBooks, setBestSellerBooks] = useState([])
 
     useEffect(() => {
         fetchBooks();
     },[])
     const fetchBooks = async () => {
         try {
-            const response = await fetch(`${endpoint.url}books/featured`,{method:"GET"})
-            const booksData = await response.json();
-            setBooks(booksData)
+            const featured_response = await fetch(`${endpoint.url}books/featured`,{method:"GET"})
+            const featuredBooksData = await featured_response.json();
+            setFeaturedBooks(featuredBooksData)
+
+            const bestSeller_response = await fetch(`${endpoint.url}books/bestsellers`,{method:"GET"})
+            const bestSellerBooksData = await bestSeller_response.json();
+            setBestSellerBooks(bestSellerBooksData)
         }
         catch (error){
             console.error(`Error fetching data: ${error}`) // Era engraçado fazer isso daqui enviar pra uma página de erro.
@@ -25,11 +30,11 @@ export function BestSellers(){
         <div>
             <div>
                 <h1 className="best-sellers-header">Mais vendidos</h1>
-                {books.map(book => <BookThumbnail book={book}/>)}
+                {bestSellerBooks.map(book => <BookThumbnail book={book}/>)}
             </div>
             <div>
                 <h1 className="best-sellers-header">Melhor avaliados</h1>
-                {books.map(book => <BookThumbnail book={book}/>)}
+                {featuredBooks.map(book => <BookThumbnail book={book}/>)}
             </div>
         </div>
     )

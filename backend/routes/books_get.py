@@ -64,6 +64,17 @@ def get_featured_books():
 
     return jsonify(featured_books), 200
 
+@app.route("/api/v1/books/bestsellers", methods=["GET"])
+def get_bestseller_books():
+    # 5 livros com mais vendas (decrescente, por isso -1), ordenados por preço (crescente, por isso 1)
+    # Garantir que o preço mínimo é maior ou igual a 0 para apenas mostrar livros com preço/disponíveis
+    featured_books = list(books_collection.find({"price": {"$gte": 0}}).sort([("amount_sold", -1), ("price", 1)]).limit(5))
+
+    for book in featured_books:
+        book["_id"] = str(book["_id"])
+
+    return jsonify(featured_books), 200
+
 
 @app.route("/api/v1/books/total", methods=["GET"])
 def get_total_books():
